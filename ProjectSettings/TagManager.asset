@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Food
+  - Water
+  - Stone
+  - Tree
+  - ItemStone
+  - ItemTree
+  - caveEntry
+  - caveExit
+  - Silver
+  - Gold
+  - ItemSilver
+  - ItemGold
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: floor
+    uniqueID: 4007154805
+    locked: 0
+  - name: animal
+    uniqueID: 868413587
+    locked: 0
+  - name: player
+    uniqueID: 4217839453
+    locked: 0
+  - name: BallRunMemorial
+    uniqueID: 2945853819
+    locked: 0
+  - name: tree
+    uniqueID: 3858133743
+    locked: 0
+  - name: overlay
+    uniqueID: 1302962591
+    locked: 0
