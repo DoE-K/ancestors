@@ -43,7 +43,6 @@ public class AnimalScript : MonoBehaviour
 
     void ChooseNewDirection()
     {
-        // Zufällige Bewegungsrichtung (N, S, W, O oder Diagonal)
         float angle = Random.Range(0f, 360f);
         moveDirection = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
 

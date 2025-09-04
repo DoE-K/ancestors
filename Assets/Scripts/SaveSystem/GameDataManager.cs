@@ -9,13 +9,11 @@ public class GameDataManager : MonoBehaviour
     {
         PlayerData data = new PlayerData();
 
-        // Player-Daten
         data.hunger = player.hunger;
         data.thirst = player.thirst;
         data.rightHandItemSave = player.rightHandItemSave;
         data.leftHandItemSave = player.leftHandItemSave;
 
-        // Welt-Daten
         WorldItemMarker[] itemsInWorld = FindObjectsOfType<WorldItemMarker>();
         foreach (var marker in itemsInWorld)
         {
@@ -39,13 +37,11 @@ public class GameDataManager : MonoBehaviour
         PlayerData data = SaveSystem.Load();
         if (data != null)
         {
-            // Player wiederherstellen
             player.hunger = data.hunger;
             player.thirst = data.thirst;
             player.rightHandItemSave = data.rightHandItemSave;
             player.leftHandItemSave = data.leftHandItemSave;
 
-            // Welt wiederherstellen
             worldManager.RestoreWorldItems(data.worldItems);
         }
     }

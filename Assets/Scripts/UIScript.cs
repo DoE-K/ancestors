@@ -5,17 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
+    private GameDataManager gameDataManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameDataManager = FindObjectOfType<GameDataManager>();
     }
 
     public void reset()
@@ -25,13 +20,19 @@ public class UIScript : MonoBehaviour
 
     public void goSettings()
     {
-        player.SaveGame();
+        if (gameDataManager != null)
+        {
+            gameDataManager.SaveGame();
+        }
         SceneManager.LoadScene("settings");
     }
 
     public void goMap()
     {
-        player.SaveGame();
+        if (gameDataManager != null)
+        {
+            gameDataManager.SaveGame();
+        }
         SceneManager.LoadScene("map");
     }
 }

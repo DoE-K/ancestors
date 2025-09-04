@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class WorldManager : MonoBehaviour
+public class WorldDataManager : MonoBehaviour
 {
     public GameObject stonePrefab;
     public GameObject treePrefab;
@@ -31,5 +32,11 @@ public class WorldManager : MonoBehaviour
                 MarkItem(obj, itemData.prefabName);
             }
         }
+    }
+
+    private void MarkItem(GameObject item, string prefabName)
+    {
+        var marker = item.AddComponent<WorldItemMarker>();
+        marker.prefabName = prefabName;
     }
 }

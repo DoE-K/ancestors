@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class TrailSpawnerScript : MonoBehaviour
 {
-    public GameObject trailPrefab;       // Dein Fußspur-Objekt
-    public float spawnInterval = 0.01f;   // Wie oft Spuren erscheinen
+    public GameObject trailPrefab;       
+    public float spawnInterval = 0.01f;   
     private float timer = 0f;
 
     private Vector2 lastPosition;

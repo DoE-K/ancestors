@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FadeAndDestroy : MonoBehaviour
 {
-    public float fadeDuration = 3f; // Wie lange das Verblassen dauert
+    public float fadeDuration = 3f; 
 
     private SpriteRenderer sr;
     private Color originalColor;
