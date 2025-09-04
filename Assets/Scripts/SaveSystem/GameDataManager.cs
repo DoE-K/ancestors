@@ -39,12 +39,24 @@ public class GameDataManager : MonoBehaviour
         {
             player.hunger = data.hunger;
             player.thirst = data.thirst;
-            player.rightHandItemSave = data.rightHandItemSave;
-            player.leftHandItemSave = data.leftHandItemSave;
 
+            // Rechte Hand wiederherstellen
+            if (!string.IsNullOrEmpty(data.rightHandItemSave))
+            {
+                player.RestoreItem(data.rightHandItemSave, true);
+            }
+
+            // Linke Hand wiederherstellen
+            if (!string.IsNullOrEmpty(data.leftHandItemSave))
+            {
+                player.RestoreItem(data.leftHandItemSave, false);
+            }
+
+            // Welt-Items laden
             worldManager.RestoreWorldItems(data.worldItems);
         }
     }
+
 
 
     

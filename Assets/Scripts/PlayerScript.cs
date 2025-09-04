@@ -52,6 +52,8 @@ public class PlayerScript : MonoBehaviour
 
         interactionText = interactionTextObject.GetComponent<TMP_Text>();
         interactionText.text = "";
+
+        FindObjectOfType<GameDataManager>().LoadGame();
     }
 
     void Update()
@@ -290,8 +292,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void RestoreItem(string itemName, bool isRightHand)
+    public void RestoreItem(string itemName, bool isRightHand)
     {
+        Debug.Log("Moin Moin");
         Transform handHold = isRightHand ? rightHandHold : leftHandHold;
         GameObject prefab = null;
 
