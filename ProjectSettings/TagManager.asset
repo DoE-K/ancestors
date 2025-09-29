@@ -8,14 +8,11 @@ TagManager:
   - Water
   - Stone
   - Tree
-  - ItemStone
-  - ItemTree
   - caveEntry
   - caveExit
   - Silver
   - Gold
-  - ItemSilver
-  - ItemGold
+  - Item
   layers:
   - Default
   - TransparentFX

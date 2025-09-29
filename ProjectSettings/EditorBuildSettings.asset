@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/cave.unity
     guid: 0cdba7929237a674cbeda35646001273
+  - enabled: 1
+    path: Assets/Scenes/settings.unity
+    guid: cf923e25c5aaa584793131408e409e41
   m_configObjects: {}

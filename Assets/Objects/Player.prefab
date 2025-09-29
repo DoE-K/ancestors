@@ -68,6 +68,7 @@ Transform:
   - {fileID: 424700398875773595}
   - {fileID: 4963492239918347213}
   - {fileID: 8223296892270100361}
+  - {fileID: 6911543385662400647}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2374248270615924483
@@ -199,8 +200,18 @@ MonoBehaviour:
   moveSpeed: 5
   hungerSlider: {fileID: 0}
   thirstSlider: {fileID: 0}
-  levelSlider: {fileID: 0}
+  hunger: 100
+  thirst: 100
   interactionTextObject: {fileID: 0}
+  rightHandHold: {fileID: 0}
+  leftHandHold: {fileID: 0}
+  stonePrefab: {fileID: 0}
+  treePrefab: {fileID: 0}
+  silverPrefab: {fileID: 0}
+  goldPrefab: {fileID: 0}
+  firePrefab: {fileID: 0}
+  rightHandItemSave: 
+  leftHandItemSave: 
 --- !u!114 &4593840621734478358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +226,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trailPrefab: {fileID: 6289577358255235769, guid: 627e0feca2a0c6343ae8341967cf7128, type: 3}
   spawnInterval: 0.05
+--- !u!1 &6759923142628603165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6911543385662400647}
+  - component: {fileID: 9044561339190298414}
+  m_Layer: 0
+  m_Name: WindZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6911543385662400647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6759923142628603165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1883572767612985133}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!182 &9044561339190298414
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6759923142628603165}
+  m_Enabled: 1
+  m_Mode: 1
+  m_Radius: 2
+  m_WindMain: 1
+  m_WindTurbulence: 1
+  m_WindPulseMagnitude: 0.5
+  m_WindPulseFrequency: 0.01
 --- !u!1 &7187814230464329092
 GameObject:
   m_ObjectHideFlags: 0

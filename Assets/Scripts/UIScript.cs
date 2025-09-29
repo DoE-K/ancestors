@@ -22,6 +22,7 @@ public class UIScript : MonoBehaviour
     {
         if (gameDataManager != null)
         {
+            Debug.Log("Testing");
             gameDataManager.SaveGame();
         }
         SceneManager.LoadScene("settings");
