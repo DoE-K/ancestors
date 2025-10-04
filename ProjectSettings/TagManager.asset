@@ -53,6 +53,9 @@ TagManager:
   - name: floor
     uniqueID: 4007154805
     locked: 0
+  - name: items
+    uniqueID: 3489534261
+    locked: 0
   - name: animal
     uniqueID: 868413587
     locked: 0

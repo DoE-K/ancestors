@@ -202,7 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4956267b7016140a21d6e801a28a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
-  tagName: 
+  itemName: Stone
   prefab: {fileID: 142798818121324930, guid: d66d23f175db2ef4d83683ffe19ef3eb, type: 3}
   destroyOnPickup: 0

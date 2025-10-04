@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -77127843
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0, g: 0, b: 0.02745098, a: 1}
@@ -154,8 +154,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -77127843
-  m_SortingLayer: 3
+  m_SortingLayerID: -805433035
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0, g: 0, b: 0.02745098, a: 1}
@@ -239,7 +239,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -77127843
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0, g: 0, b: 0.02745098, a: 1}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 8188320003075766950}
   m_Layer: 0
   m_Name: obsidiansplinter_item
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,8 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Obsidiansplinter
-  tagName: ItemObsidiansplinter
   prefab: {fileID: 5249744920534276058}
+  destroyOnPickup: 1
 --- !u!61 &8188320003075766950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -436,7 +436,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -77127843
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0, g: 0, b: 0.02745098, a: 1}
@@ -520,7 +520,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -77127843
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0, g: 0, b: 0.02745098, a: 1}
@@ -604,7 +604,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -77127843
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0, g: 0, b: 0.02745098, a: 1}
@@ -688,7 +688,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -77127843
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0, g: 0, b: 0.02745098, a: 1}

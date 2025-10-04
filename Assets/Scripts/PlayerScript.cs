@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     private float thirstDecayRate = 0.083f;
 
     private ItemScript nearbyItem;
+    private FoodScript nearbyFood;
+    private WaterScript nearbyWater;
 
     public GameObject interactionTextObject;
     private TMP_Text interactionText;
@@ -83,7 +85,7 @@ public class PlayerScript : MonoBehaviour
         thirstSlider.value = thirst;
 
         
-        /*if (nearbyFood != null)
+        if (nearbyFood != null)
         {
             interactionText.text = "press F to eat";
             if (Input.GetKeyDown(KeyCode.F))
@@ -93,14 +95,14 @@ public class PlayerScript : MonoBehaviour
                 nearbyFood = null;
             }
         }
-        else if (nearbyWater != null)
+        if (nearbyWater != null)
         {
             interactionText.text = "press R to drink";
             if (Input.GetKeyDown(KeyCode.R))
             {
                 DrinkWater(nearbyWater.thirst);
             }
-        }*/
+        }
         if (nearbyItem != null)
         {
             interactionText.text = "press E to pick up " + nearbyItem.itemName;
@@ -121,7 +123,7 @@ public class PlayerScript : MonoBehaviour
             DropItem(rightHandItem, ref rightHandItem, rightHandItemSave);
             rightHandItemSave = "";
         }
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             DropItem(leftHandItem, ref leftHandItem, leftHandItemSave);
             leftHandItemSave = "";
@@ -129,6 +131,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
+            Debug.Log("C wurde gedrückt!");
             Craft();
         }
 
@@ -155,6 +158,16 @@ public class PlayerScript : MonoBehaviour
             nearbyItem = item;
         }
 
+        if (other.CompareTag("Food"))
+        {
+            nearbyFood = other.GetComponent<FoodScript>();
+        }
+
+        if (other.CompareTag("Water"))
+        {
+            nearbyWater = other.GetComponent<WaterScript>();
+        }
+
         if (other.CompareTag("caveEntry"))
         {
             FindObjectOfType<GameDataManager>().SaveGame();
@@ -175,6 +188,24 @@ public class PlayerScript : MonoBehaviour
         if (item != null && item == nearbyItem)
         {
             nearbyItem = null;
+        }
+
+        if (other.CompareTag("Food"))
+        {
+            if (other.GetComponent<FoodScript>() == nearbyFood)
+            {
+                nearbyFood = null;
+                interactionText.text = "";
+            }
+        }
+
+        if (other.CompareTag("Water"))
+        {
+            if (other.GetComponent<WaterScript>() == nearbyWater)
+            {
+                nearbyWater = null;
+                interactionText.text = "";
+            }
         }
     }
 
@@ -284,10 +315,12 @@ public class PlayerScript : MonoBehaviour
         if (rightHandItem == null)
         {
             PickUpItemInternal(ref rightHandItem, ref rightHandItemSave, rightHandHold, item);
+            //GameDataManager.SaveGame();
         }
         else if (leftHandItem == null)
         {
             PickUpItemInternal(ref leftHandItem, ref leftHandItemSave, leftHandHold, item);
+            //GameDataManager.SaveGame();
         }
     }
 
@@ -298,6 +331,8 @@ public class PlayerScript : MonoBehaviour
         handSlot = Instantiate(item.prefab, handHold.position, handHold.rotation);
         handSlot.transform.SetParent(handHold);
         handSave = item.itemName;
+        Debug.Log($"Aufgehoben: {item.itemName}");
+
 
         // Quelle entfernen oder nicht
         if (item.destroyOnPickup)
@@ -335,6 +370,7 @@ public class PlayerScript : MonoBehaviour
     // ------------------------------------
     void Craft()
     {
+        Debug.Log($"Links: {leftHandItemSave}, Rechts: {rightHandItemSave}");
         if (string.IsNullOrEmpty(leftHandItemSave) || string.IsNullOrEmpty(rightHandItemSave))
             return;
 
@@ -380,11 +416,11 @@ public class PlayerScript : MonoBehaviour
             case "Hammerstone": prefab = hammerstoneItemPrefab; break;
             case "Obsidian": prefab = obsidianItemPrefab; break;
             case "Obsidianblade": prefab = obsidianbladeItemPrefab; break;
-            case "Obsidiansplinter": prefab = cordageItemPrefab; break;
+            case "Obsidiansplinter": prefab = obsidiansplinterItemPrefab; break;
             case "Plantfiber": prefab = plantfiberItemPrefab; break;
             case "Stick": prefab = stickItemPrefab; break;
             case "Stoneblade": prefab = stonebladeItemPrefab; break;
-            case "Stonesplinter": prefab = cordageItemPrefab; break;
+            case "Stonesplinter": prefab = stonesplinterItemPrefab; break;
             case "Woodpiece": prefab = woodpieceItemPrefab; break;
         }
 
@@ -397,7 +433,7 @@ public class PlayerScript : MonoBehaviour
         var handItem = Instantiate(prefab, rightHandHold.position, rightHandHold.rotation);
         handItem.tag = "Item" + itemName;
         handItem.transform.SetParent(rightHandHold);
-        handItem.transform.localScale = Vector3.one * 0.5f;
+        //handItem.transform.localScale = Vector3.one * 0.5f;
 
         rightHandItem = handItem;
         rightHandItemSave = itemName;
@@ -430,9 +466,20 @@ public class PlayerScript : MonoBehaviour
         switch (itemName)
         {
             case "Stone": prefab = stoneItemPrfab; break;
-            case "Tree": prefab = branchItemPrefab; break;
+            case "Branch": prefab = branchItemPrefab; break;
             case "Silver": prefab = silverItemPrefab; break;
             case "Gold": prefab = goldItemPrefab; break;
+            case "Fire": prefab = fireItemPrefab; break;
+            case "Cordage": prefab = cordageItemPrefab; break;
+            case "Hammerstone": prefab = hammerstoneItemPrefab; break;
+            case "Obsidian": prefab = obsidianItemPrefab; break;
+            case "Obsidianblade": prefab = obsidianbladeItemPrefab; break;
+            case "Obsidiansplinter": prefab = obsidiansplinterItemPrefab; break;
+            case "Plantfiber": prefab = plantfiberItemPrefab; break;
+            case "Stick": prefab = stickItemPrefab; break;
+            case "Stoneblade": prefab = stonebladeItemPrefab; break;
+            case "Stonesplinter": prefab = stonesplinterItemPrefab; break;
+            case "Woodpiece": prefab = woodpieceItemPrefab; break;
             default: return;
         }
 
@@ -441,7 +488,7 @@ public class PlayerScript : MonoBehaviour
             var handItem = Instantiate(prefab, handHold.position, handHold.rotation);
             handItem.tag = "Item" + itemName;
             handItem.transform.SetParent(handHold);
-            handItem.transform.localScale = Vector3.one * 0.5f;
+            //handItem.transform.localScale = Vector3.one * 0.5f;
 
             if (isRightHand)
             {

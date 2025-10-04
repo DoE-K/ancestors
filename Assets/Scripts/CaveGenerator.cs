@@ -58,7 +58,7 @@ public class CaveGenerator : MonoBehaviour
         
         if(activeSegments.Count > segmentsAhead + 2)
         {
-            Destroy(activeSegments.Dequeue());
+            //Destroy(activeSegments.Dequeue());
         }
     }
 }
