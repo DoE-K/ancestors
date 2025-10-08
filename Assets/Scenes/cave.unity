@@ -1670,6 +1670,9 @@ MonoBehaviour:
   stonebladeItemPrefab: {fileID: 4041901648752856890, guid: 499eff811f218bb459c6116197810b74, type: 3}
   stonesplinterItemPrefab: {fileID: 111331859293995073, guid: ddd359e056abc7143b579a99dbb3e03f, type: 3}
   woodpieceItemPrefab: {fileID: 1263169382404128017, guid: 8ca08a3f2ccdf4c4cbeec3fb244c92e7, type: 3}
+  ficusItemPrefab: {fileID: 4835013737776260894, guid: 3839454da655b3742a78d151649fc9e6, type: 3}
+  rubusItemPrefab: {fileID: 6303558597769425169, guid: a2f262e8ccda72f4f812e18fe4fe7c1c, type: 3}
+  vaccItemPrefab: {fileID: 6456227226306244904, guid: 9b35bbbd9bd617740a70ad6337d53e3f, type: 3}
 --- !u!114 &1642215436
 MonoBehaviour:
   m_ObjectHideFlags: 0

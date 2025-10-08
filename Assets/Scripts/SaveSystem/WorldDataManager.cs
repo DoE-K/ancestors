@@ -18,6 +18,9 @@ public class WorldDataManager : MonoBehaviour
     public GameObject stonebladeItemPrefab;
     public GameObject stonesplinterItemPrefab;
     public GameObject woodpieceItemPrefab;
+    public GameObject ficusItemPrefab;
+    public GameObject rubusItemPrefab;
+    public GameObject vaccItemPrefab;
 
     public void RestoreWorldItems(List<WorldItemData> items)
     {
@@ -41,6 +44,9 @@ public class WorldDataManager : MonoBehaviour
                 case "Stoneblade": prefab = stonebladeItemPrefab; break;
                 case "Stonesplinter": prefab = stonesplinterItemPrefab; break;
                 case "Woodpiece": prefab = woodpieceItemPrefab; break;
+                case "Ficus": prefab = ficusItemPrefab; break;
+                case "Rubus": prefab = rubusItemPrefab; break;
+                case "Vacc": prefab = vaccItemPrefab; break; 
             }
 
             if (prefab != null)

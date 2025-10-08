@@ -3,7 +3,25 @@ guid: 322f6abe3db7d1548badd82eaf2adddb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - stoneItemPrefab: {fileID: 142798818121324930, guid: d66d23f175db2ef4d83683ffe19ef3eb, type: 3}
+  - branchItemPrefab: {fileID: 3316177416189948162, guid: 316f395fabec098428d2b062efbafd19, type: 3}
+  - silverItemPrefab: {instanceID: 0}
+  - goldItemPrefab: {fileID: 1540950305579844356, guid: 55ce31766c6806a4abed4fb412b24a09, type: 3}
+  - fireItemPrefab: {fileID: 5667150740996800618, guid: 39113064d0fa4484d9a1acab62e4d73b, type: 3}
+  - cordageItemPrefab: {fileID: 7945597281177809020, guid: 258c182f758686041bb5ef26ebbcd23f, type: 3}
+  - hammerstoneItemPrefab: {fileID: 962467318589217980, guid: 8ad5df3f69d7d654a86ca2ac102df405, type: 3}
+  - obsidianItemPrefab: {fileID: 8739317501222724535, guid: c47f7b182cda9464292e91b9b9f3c23a, type: 3}
+  - obsidianbladeItemPrefab: {fileID: 5075815934961665517, guid: 0eddd94421d41e3458b527e0a894c867, type: 3}
+  - obsidiansplinterItemPrefab: {fileID: 5249744920534276058, guid: aff0ec647156185489051eac18edc501, type: 3}
+  - plantfiberItemPrefab: {fileID: 7898789752996363308, guid: 840f5ec3cc6e9764f96ce86aab5ef905, type: 3}
+  - stickItemPrefab: {fileID: 2759785883975582908, guid: 83c5a73956b75654e8d04243f2a1c9cf, type: 3}
+  - stonebladeItemPrefab: {fileID: 4041901648752856890, guid: 499eff811f218bb459c6116197810b74, type: 3}
+  - stonesplinterItemPrefab: {fileID: 111331859293995073, guid: ddd359e056abc7143b579a99dbb3e03f, type: 3}
+  - woodpieceItemPrefab: {fileID: 1263169382404128017, guid: 8ca08a3f2ccdf4c4cbeec3fb244c92e7, type: 3}
+  - ficusItemPrefab: {fileID: 4835013737776260894, guid: 3839454da655b3742a78d151649fc9e6, type: 3}
+  - rubusItemPrefab: {fileID: 6303558597769425169, guid: a2f262e8ccda72f4f812e18fe4fe7c1c, type: 3}
+  - vaccItemPrefab: {fileID: 6456227226306244904, guid: 9b35bbbd9bd617740a70ad6337d53e3f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

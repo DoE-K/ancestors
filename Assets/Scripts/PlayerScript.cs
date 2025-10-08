@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject interactionTextObject;
     private TMP_Text interactionText;
 
-    
+    //ITEMS
     public GameObject stoneItemPrfab;
     public GameObject branchItemPrefab;
     public GameObject silverItemPrefab;
@@ -44,6 +44,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject stonebladeItemPrefab;
     public GameObject stonesplinterItemPrefab;
     public GameObject woodpieceItemPrefab;
+    public GameObject ficusItemPrefab;
+    public GameObject rubusItemPrefab;
+    public GameObject vaccItemPrefab;
 
 
     public Transform rightHandHold;
@@ -221,94 +224,6 @@ public class PlayerScript : MonoBehaviour
         thirstSlider.value = thirst;
     }
 
-    /*void PickUpStone()
-    {
-        if (rightHandItem == null)
-        {
-            rightHandItem = Instantiate(stoneItemPrfab, rightHandHold.position, rightHandHold.rotation);
-            rightHandItem.tag = "ItemStone";
-            rightHandItem.transform.SetParent(rightHandHold);
-            //rightHandItem.transform.localScale = Vector3.one * 0.5f;
-            rightHandItemSave = "Stone";
-            if (nearbyStone.CompareTag("ItemStone")) Destroy(nearbyStone.gameObject);
-        }
-        else if (leftHandItem == null)
-        {
-            leftHandItem = Instantiate(stoneItemPrfab, leftHandHold.position, leftHandHold.rotation);
-            leftHandItem.tag = "ItemStone";
-            leftHandItem.transform.SetParent(leftHandHold);
-            //leftHandItem.transform.localScale = Vector3.one * 0.5f;
-            leftHandItemSave = "Stone";
-            if (nearbyStone.CompareTag("ItemStone")) Destroy(nearbyStone.gameObject);
-        }
-    }
-
-    void PickUpTree()
-    {
-        if (rightHandItem == null)
-        {
-            rightHandItem = Instantiate(branchItemPrefab, rightHandHold.position, rightHandHold.rotation);
-            rightHandItem.tag = "ItemBranch";
-            rightHandItem.transform.SetParent(rightHandHold);
-            //rightHandItem.transform.localScale = Vector3.one * 0.5f;
-            rightHandItemSave = "Branch";
-            if (nearbyTree.CompareTag("ItemBranch")) Destroy(nearbyTree.gameObject);
-        }
-        else if (leftHandItem == null)
-        {
-            leftHandItem = Instantiate(branchItemPrefab, leftHandHold.position, leftHandHold.rotation);
-            leftHandItem.tag = "ItemBranch";
-            leftHandItem.transform.SetParent(leftHandHold);
-            //leftHandItem.transform.localScale = Vector3.one * 0.5f;
-            leftHandItemSave = "Branch";
-            if (nearbyTree.CompareTag("ItemBranch")) Destroy(nearbyTree.gameObject);
-        }
-    }
-
-    void PickUpSilver()
-    {
-        if (rightHandItem == null)
-        {
-            rightHandItem = Instantiate(silverItemPrefab, rightHandHold.position, rightHandHold.rotation);
-            rightHandItem.tag = "ItemSilver";
-            rightHandItem.transform.SetParent(rightHandHold);
-            //rightHandItem.transform.localScale = Vector3.one * 0.5f;
-            rightHandItemSave = "Silver";
-            if (nearbySilver.CompareTag("ItemSilver")) Destroy(nearbySilver.gameObject);
-        }
-        else if (leftHandItem == null)
-        {
-            leftHandItem = Instantiate(silverItemPrefab, leftHandHold.position, leftHandHold.rotation);
-            leftHandItem.tag = "ItemSilver";
-            leftHandItem.transform.SetParent(leftHandHold);
-            //leftHandItem.transform.localScale = Vector3.one * 0.5f;
-            leftHandItemSave = "Silver";
-            if (nearbySilver.CompareTag("ItemSilver")) Destroy(nearbySilver.gameObject);
-        }
-    }
-
-    void PickUpGold()
-    {
-        if (rightHandItem == null)
-        {
-            rightHandItem = Instantiate(goldItemPrefab, rightHandHold.position, rightHandHold.rotation);
-            rightHandItem.tag = "ItemGold";
-            rightHandItem.transform.SetParent(rightHandHold);
-            //rightHandItem.transform.localScale = Vector3.one * 0.5f;
-            rightHandItemSave = "Gold";
-            if (nearbyGold.CompareTag("ItemGold")) Destroy(nearbyGold.gameObject);
-        }
-        else if (leftHandItem == null)
-        {
-            leftHandItem = Instantiate(goldItemPrefab, leftHandHold.position, leftHandHold.rotation);
-            leftHandItem.tag = "ItemGold";
-            leftHandItem.transform.SetParent(leftHandHold);
-            //leftHandItem.transform.localScale = Vector3.one * 0.5f;
-            leftHandItemSave = "Gold";
-            if (nearbyGold.CompareTag("ItemGold")) Destroy(nearbyGold.gameObject);
-        }
-    }*/
-
     // High-Level Version: nur 4 Parameter
     void PickUpItem(ItemScript item)
     {
@@ -422,6 +337,9 @@ public class PlayerScript : MonoBehaviour
             case "Stoneblade": prefab = stonebladeItemPrefab; break;
             case "Stonesplinter": prefab = stonesplinterItemPrefab; break;
             case "Woodpiece": prefab = woodpieceItemPrefab; break;
+            case "Ficus": prefab = ficusItemPrefab; break;
+            case "Rubus": prefab = rubusItemPrefab; break;
+            case "Vacc": prefab = vaccItemPrefab; break; 
         }
 
         if (prefab == null)

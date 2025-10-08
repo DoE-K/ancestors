@@ -53,20 +53,20 @@ TagManager:
   - name: floor
     uniqueID: 4007154805
     locked: 0
-  - name: items
-    uniqueID: 3489534261
+  - name: player
+    uniqueID: 4217839453
     locked: 0
   - name: animal
     uniqueID: 868413587
     locked: 0
-  - name: player
-    uniqueID: 4217839453
+  - name: tree
+    uniqueID: 3858133743
+    locked: 0
+  - name: items
+    uniqueID: 3489534261
     locked: 0
   - name: BallRunMemorial
     uniqueID: 2945853819
-    locked: 0
-  - name: tree
-    uniqueID: 3858133743
     locked: 0
   - name: overlay
     uniqueID: 1302962591
