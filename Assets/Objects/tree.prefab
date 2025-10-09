@@ -4796,7 +4796,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -436833553
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4901,7 +4901,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -436833553
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0, g: 0.7283019, b: 0.021658551, a: 1}
@@ -4928,6 +4928,7 @@ GameObject:
   - component: {fileID: 8419604049204672508}
   - component: {fileID: 577072965340095068}
   - component: {fileID: 6807375213966108714}
+  - component: {fileID: 1120333682989568571}
   m_Layer: 0
   m_Name: tree
   m_TagString: Tree
@@ -4991,7 +4992,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -436833553
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0.31132078, g: 0.15090443, b: 0, a: 1}
@@ -5121,3 +5122,15 @@ MonoBehaviour:
   itemName: Branch
   prefab: {fileID: 3316177416189948162, guid: 316f395fabec098428d2b062efbafd19, type: 3}
   destroyOnPickup: 0
+--- !u!114 &1120333682989568571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182988905574553471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c54324ecea6bc449ab0fedfd662270e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

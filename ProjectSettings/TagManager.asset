@@ -50,14 +50,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: background
+    uniqueID: 1967312239
+    locked: 0
   - name: floor
     uniqueID: 4007154805
     locked: 0
-  - name: player
-    uniqueID: 4217839453
-    locked: 0
   - name: animal
     uniqueID: 868413587
+    locked: 0
+  - name: stone
+    uniqueID: 4235380691
+    locked: 0
+  - name: bush
+    uniqueID: 3235979179
+    locked: 0
+  - name: plant/flower
+    uniqueID: 288991739
+    locked: 0
+  - name: player
+    uniqueID: 4217839453
     locked: 0
   - name: tree
     uniqueID: 3858133743
@@ -68,6 +80,6 @@ TagManager:
   - name: BallRunMemorial
     uniqueID: 2945853819
     locked: 0
-  - name: overlay
+  - name: forground
     uniqueID: 1302962591
     locked: 0

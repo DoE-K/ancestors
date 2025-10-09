@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 3672013213849653274}
   - component: {fileID: 6286811710687776785}
   - component: {fileID: 4593840621734478358}
+  - component: {fileID: 7525199936976732886}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -283,7 +284,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -77127843
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -391,6 +392,12 @@ MonoBehaviour:
   stonebladeItemPrefab: {fileID: 4041901648752856890, guid: 499eff811f218bb459c6116197810b74, type: 3}
   stonesplinterItemPrefab: {fileID: 111331859293995073, guid: ddd359e056abc7143b579a99dbb3e03f, type: 3}
   woodpieceItemPrefab: {fileID: 1263169382404128017, guid: 8ca08a3f2ccdf4c4cbeec3fb244c92e7, type: 3}
+  urblackberryItemPrefab: {fileID: 0}
+  urblueberryItemPrefab: {fileID: 0}
+  urfigItemPrefab: {fileID: 0}
+  urmangoItemPrefab: {fileID: 0}
+  urdateItemPrefab: {fileID: 0}
+  uravocadoItemPrefab: {fileID: 0}
   rightHandHold: {fileID: 4963492239918347213}
   leftHandHold: {fileID: 8223296892270100361}
   rightHandItemSave: 
@@ -409,6 +416,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trailPrefab: {fileID: 6289577358255235769, guid: 627e0feca2a0c6343ae8341967cf7128, type: 3}
   spawnInterval: 0.05
+--- !u!114 &7525199936976732886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712850647348681109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c54324ecea6bc449ab0fedfd662270e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5129627662452019412
 GameObject:
   m_ObjectHideFlags: 0

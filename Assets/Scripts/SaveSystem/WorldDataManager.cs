@@ -18,9 +18,12 @@ public class WorldDataManager : MonoBehaviour
     public GameObject stonebladeItemPrefab;
     public GameObject stonesplinterItemPrefab;
     public GameObject woodpieceItemPrefab;
-    public GameObject ficusItemPrefab;
-    public GameObject rubusItemPrefab;
-    public GameObject vaccItemPrefab;
+    public GameObject urblackberryItemPrefab;
+    public GameObject urblueberryItemPrefab;
+    public GameObject urfigItemPrefab;
+    public GameObject urmangoItemPrefab;
+    public GameObject urdateItemPrefab;
+    public GameObject uravocadoItemPrefab;
 
     public void RestoreWorldItems(List<WorldItemData> items)
     {
@@ -44,9 +47,12 @@ public class WorldDataManager : MonoBehaviour
                 case "Stoneblade": prefab = stonebladeItemPrefab; break;
                 case "Stonesplinter": prefab = stonesplinterItemPrefab; break;
                 case "Woodpiece": prefab = woodpieceItemPrefab; break;
-                case "Ficus": prefab = ficusItemPrefab; break;
-                case "Rubus": prefab = rubusItemPrefab; break;
-                case "Vacc": prefab = vaccItemPrefab; break; 
+                case "UrBlackberry": prefab = urblackberryItemPrefab; break;
+                case "UrBlueberry": prefab = urblueberryItemPrefab; break;
+                case "UrFig": prefab = urfigItemPrefab; break; 
+                case "UrMango": prefab = urmangoItemPrefab; break;
+                case "UrDate": prefab = urdateItemPrefab; break; 
+                case "UrAvocado": prefab = uravocadoItemPrefab; break;
             }
 
             if (prefab != null)
