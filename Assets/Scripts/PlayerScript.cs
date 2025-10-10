@@ -91,16 +91,44 @@ public class PlayerScript : MonoBehaviour
         thirstSlider.value = thirst;
 
         
-        if (nearbyFood != null)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            interactionText.text = "press F to eat";
-            if (Input.GetKeyDown(KeyCode.F))
+            Debug.Log("lvl1 bin drin");
+            // Prüfe rechte Hand
+            if (rightHandItem != null && rightHandItem.CompareTag("Food"))
             {
-                EatFood(nearbyFood.nutrition);
-                Destroy(nearbyFood.gameObject);
-                nearbyFood = null;
+                Debug.Log("lvl2 bin drin");
+                var food = rightHandItem.GetComponent<FoodScript>();
+                if (food != null)
+                {
+                    float nutrition = food.nutrition * rightHandItem.transform.localScale.magnitude;
+                    EatFood(nutrition);
+                    Destroy(rightHandItem);
+                    rightHandItem = null;
+                    rightHandItemSave = "";
+                    Debug.Log($"Food gegessen! Nutrition: {nutrition:F1}");
+                }
+
+            }
+
+            // Prüfe linke Hand
+            else if (leftHandItem != null && leftHandItem.CompareTag("Food"))
+            {
+                Debug.Log("lvl3 bin drin");
+                var food = leftHandItem.GetComponent<FoodScript>();
+                if (food != null)
+                {
+                    float nutrition = food.nutrition * leftHandItem.transform.localScale.magnitude;
+                    EatFood(nutrition);
+                    Destroy(leftHandItem);
+                    leftHandItem = null;
+                    leftHandItemSave = "";
+                    Debug.Log($"Food gegessen! Nutrition: {nutrition:F1}");
+                }
+
             }
         }
+
         if (nearbyWater != null)
         {
             interactionText.text = "press R to drink";
@@ -174,18 +202,23 @@ public class PlayerScript : MonoBehaviour
             nearbyWater = other.GetComponent<WaterScript>();
         }
 
-        if (other.CompareTag("caveEntry"))
+        var cave = other.GetComponent<CaveScript>();
+        if (cave != null)
         {
             FindObjectOfType<GameDataManager>().SaveGame();
-            rb.position = new Vector3(-45f, 26f, 0f);
-            SceneManager.LoadScene("cave");
+
+            if (!cave.isExit)
+            {
+                Debug.Log($"Betrete Höhle: {cave.caveName}");
+                SceneManager.LoadScene(cave.caveName);
+            }
+            else
+            {
+                Debug.Log($"Verlasse Höhle: {cave.caveName}");
+                SceneManager.LoadScene("map");
+            }
         }
-        if (other.CompareTag("caveExit"))
-        {
-            FindObjectOfType<GameDataManager>().SaveGame();
-            rb.position = new Vector3(0f, 19.5f, 0f);
-            SceneManager.LoadScene("map");
-        }
+
     }
 
     private void OnTriggerExit2D(Collider2D other)

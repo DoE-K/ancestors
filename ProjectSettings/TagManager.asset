@@ -13,6 +13,7 @@ TagManager:
   - Silver
   - Gold
   - Item
+  - cave
   layers:
   - Default
   - TransparentFX

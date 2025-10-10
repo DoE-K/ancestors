@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 
 [System.Serializable]
+public class ScenePositionData
+{
+    public string sceneName;
+    public float[] position;
+}
+
+[System.Serializable]
 public class WorldItemData
 {
     public string prefabName;
@@ -15,7 +22,7 @@ public class PlayerData
     public float thirst;
     public string rightHandItemSave;
     public string leftHandItemSave;
-    public float[] position; // x,y,z
 
+    public List<ScenePositionData> scenePositions = new List<ScenePositionData>();
     public List<WorldItemData> worldItems = new List<WorldItemData>();
 }

@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -805433035
-  m_SortingLayer: 5
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0.83396226, g: 0, b: 0.3082506, a: 1}
@@ -98,9 +98,10 @@ GameObject:
   - component: {fileID: 5983477559726179437}
   - component: {fileID: 4594622966691349635}
   - component: {fileID: 3585565564323767771}
+  - component: {fileID: 2977778511868816731}
   m_Layer: 0
   m_Name: UrDate_item
-  m_TagString: Item
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,7 +161,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -805433035
-  m_SortingLayer: 5
+  m_SortingLayer: 9
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0.43137258, g: 0, b: 0, a: 1}
@@ -290,3 +291,17 @@ MonoBehaviour:
   itemName: UrDate
   prefab: {fileID: 3744868622752771316}
   destroyOnPickup: 1
+--- !u!114 &2977778511868816731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744868622752771316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375d1ac89e27d7245b8ecb0e6b77a0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameTextObject: {fileID: 3744868622752771316}
+  nutrition: 20

@@ -9,9 +9,7 @@ public static class SaveSystem
     {
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
-        Debug.Log("Spiel gespeichert: " + path);
-        Debug.Log(Application.persistentDataPath + "/save.json");
-
+        Debug.Log($"Spiel gespeichert unter: {path}");
     }
 
     public static PlayerData Load()
@@ -20,6 +18,7 @@ public static class SaveSystem
         {
             string json = File.ReadAllText(path);
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
+            Debug.Log("Savegame geladen!");
             return data;
         }
         else
