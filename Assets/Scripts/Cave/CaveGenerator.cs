@@ -14,7 +14,7 @@ public class CaveGenerator : MonoBehaviour
     public GameObject goldPrefab;
     public GameObject stonePrefab;
 
-    private float lastY = 0f;
+    private float lastY = -175f;
     private Queue<GameObject> activeSegments = new Queue<GameObject>();
 
     void Start()

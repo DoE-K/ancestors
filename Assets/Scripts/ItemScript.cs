@@ -6,4 +6,5 @@ public class ItemScript : MonoBehaviour
     //public string tagName;   
     public GameObject prefab; 
     public bool destroyOnPickup = true;  
+    public bool AbleToPickup = true;
 }

@@ -51,6 +51,23 @@ public class PlayerScript : MonoBehaviour
     public GameObject urdateItemPrefab;
     public GameObject uravocadoItemPrefab;
 
+    public GameObject boneItemPrefab;
+    public GameObject boneshardItemPrefab;
+    public GameObject needleItemPrefab;
+    public GameObject hideItemPrefab;
+    public GameObject driedhideItemPrefab;
+    public GameObject preparedhideItemPrefab;
+    public GameObject fabricItemPrefab;
+    
+    public GameObject plankItemPrefab;
+    public GameObject raftItemPrefab;
+    public GameObject raftblueprintItemPrefab;
+    public GameObject boatItemPrefab;
+    public GameObject boatblueprintItemPrefab;
+    public GameObject shipItemPrefab;
+    public GameObject shipblueprintItemPrefab;
+
+    [SerializeField] private Transform beachSpawnPoint;
 
     public Transform rightHandHold;
     public Transform leftHandHold;
@@ -71,7 +88,7 @@ public class PlayerScript : MonoBehaviour
         interactionText = interactionTextObject.GetComponent<TMP_Text>();
         interactionText.text = "";
 
-        FindObjectOfType<GameDataManager>().LoadGame();
+        //FindObjectOfType<GameDataManager>().LoadGame();
     }
 
     void Update()
@@ -139,7 +156,11 @@ public class PlayerScript : MonoBehaviour
         }
         if (nearbyItem != null)
         {
-            interactionText.text = "press E to pick up " + nearbyItem.itemName;
+            if(nearbyItem.AbleToPickup)
+            {
+                interactionText.text = "press E to pick up " + nearbyItem.itemName;
+            }
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickUpItem(nearbyItem);
@@ -202,7 +223,7 @@ public class PlayerScript : MonoBehaviour
             nearbyWater = other.GetComponent<WaterScript>();
         }
 
-        var cave = other.GetComponent<CaveScript>();
+        /*var cave = other.GetComponent<CaveScript>();
         if (cave != null)
         {
             FindObjectOfType<GameDataManager>().SaveGame();
@@ -216,6 +237,66 @@ public class PlayerScript : MonoBehaviour
             {
                 Debug.Log($"Verlasse Höhle: {cave.caveName}");
                 SceneManager.LoadScene("map");
+            }
+        }*/
+
+        //var cave = other.GetComponent<CaveScript>();
+
+        if(other.CompareTag("cave"))
+        {
+            var cave = other.GetComponent<CaveScript>();
+
+            if(!cave.isExit)
+            {
+                if(cave.caveName == "cave0")
+                {
+                    Debug.Log("teleport to cave0");
+                    transform.position = new Vector3 (0, -156, 0);
+                }
+
+                if(cave.caveName == "cave1")
+                {
+                    Debug.Log("teleport to cave1");
+                    transform.position = new Vector3 (-90, -202, 0);
+                }
+
+                if(cave.caveName == "cave2")
+                {
+                    Debug.Log("teleport to cave2");
+                    transform.position = new Vector3 (-185, -202, 0);
+                }
+
+                if(cave.caveName == "cave3")
+                {
+                    Debug.Log("teleport to cave3");
+                    transform.position = new Vector3 (-275, -202, 0);
+                }
+            }
+            else
+            {
+                if(cave.caveName == "cave0")
+                {
+                    Debug.Log("teleport to cave0!");
+                    transform.position = new Vector3 (-45, 28, 0);
+                }
+
+                if(cave.caveName == "cave1")
+                {
+                    Debug.Log("teleport to cave1!");
+                    transform.position = new Vector3 (-200, 73, 0);
+                }
+
+                if(cave.caveName == "cave2")
+                {
+                    Debug.Log("teleport to cave2!");
+                    transform.position = new Vector3 (-105, -42, 0);
+                }
+
+                if(cave.caveName == "cave3")
+                {
+                    Debug.Log("teleport to cave3!");
+                    transform.position = new Vector3 (20, 78, 0);
+                }
             }
         }
 
@@ -278,23 +359,27 @@ public class PlayerScript : MonoBehaviour
     // Low-Level Version: ausführlich
     void PickUpItemInternal(ref GameObject handSlot, ref string handSave, Transform handHold, ItemScript item)
     {
-        // In die Hand legen
-        handSlot = Instantiate(item.prefab, handHold.position, handHold.rotation);
-        handSlot.transform.SetParent(handHold);
-        handSave = item.itemName;
-        Debug.Log($"Aufgehoben: {item.itemName}");
+        if(item.AbleToPickup)
+        {
+            // In die Hand legen
+            handSlot = Instantiate(item.prefab, handHold.position, handHold.rotation);
+            handSlot.transform.SetParent(handHold);
+            handSave = item.itemName;
+            Debug.Log($"Aufgehoben: {item.itemName}");
 
 
-        // Quelle entfernen oder nicht
-        if (item.destroyOnPickup)
-        {
-            Destroy(item.gameObject);
+            // Quelle entfernen oder nicht
+            if (item.destroyOnPickup)
+            {
+                Destroy(item.gameObject);
+            }
+            else
+            {
+                Debug.Log($"{item.itemName} wurde entnommen, Quelle bleibt bestehen.");
+                // optional: cooldown oder drop counter einbauen
+            }
         }
-        else
-        {
-            Debug.Log($"{item.itemName} wurde entnommen, Quelle bleibt bestehen.");
-            // optional: cooldown oder drop counter einbauen
-        }
+        
     }
 
 
@@ -311,7 +396,25 @@ public class PlayerScript : MonoBehaviour
         { "Stone+Stone", "Hammerstone" },
         { "Branch+Hammerstone", "Stick" },
         { "Stick+Stick", "Woodpiece" },
-        { "Hammerstone+Hammerstone", "Stonesplinter" }
+        { "Hammerstone+Stone", "Stonesplinter" },
+        { "Hammerstone+Obsidian", "Obsidiansplinter" },
+        { "Stick+Stonesplinter", "Stoneblade" },
+        { "Obsidiansplinter+Stick", "Obsidianblade" }, 
+        { "Plantfiber+Plantfiber", "Cordage" },
+
+        { "Woodpiece+Woodpiece", "Plank" },
+
+        { "Bone+Hammerstone", "Boneshard" }, 
+        { "Boneshard+Obsidianblade", "Needle" },
+
+        { "Hide+Fire", "Driedhire" },  
+        { "Driedhide+Obsidianblade", "Preparedhide" },
+        { "Cordage+Plantfiber", "Fabric" },
+
+        { "Fabric+Cordage", "Sail" }, 
+        { "Cordage+Plank", "Raft" }, 
+        { "Raftlbueprint+Plank", "Boat" }, //eigentlich mit sail aber später
+        { "Boatblueprint+Plank", "Ship" }
 
     };
 
@@ -340,7 +443,25 @@ public class PlayerScript : MonoBehaviour
             leftHandItemSave = "";
             rightHandItemSave = "";
 
-            SpawnInRightHand(result);
+            if (result == "Raft")
+            {
+                SpawnInMap(result);
+                SpawnInRightHand("Raftblueprint");
+            }
+            else if (result == "Boat")
+            {
+                SpawnInMap(result);
+                SpawnInRightHand("Boatblueprint");
+            }
+            else if (result == "Ship")
+            {
+                SpawnInMap(result);
+                SpawnInRightHand("Shipblueprint");
+            }
+            else
+            {
+                SpawnInRightHand(result);
+            }
         }
         else
         {
@@ -354,6 +475,8 @@ public class PlayerScript : MonoBehaviour
     // ------------------------------------
     void SpawnInRightHand(string itemName)
     {
+        Debug.Log($"SpawnInRightHand CALLED WITH: {itemName}");
+
         GameObject prefab = null;
 
         switch (itemName)
@@ -379,6 +502,20 @@ public class PlayerScript : MonoBehaviour
             case "UrMango": prefab = urmangoItemPrefab; break;
             case "UrDate": prefab = urdateItemPrefab; break; 
             case "UrAvocado": prefab = uravocadoItemPrefab; break;
+            case "Bone": prefab = boneItemPrefab; break;
+            case "Boneshard": prefab = boneshardItemPrefab; break;
+            case "Needle": prefab = needleItemPrefab; break;
+            case "Hide": prefab = hideItemPrefab; break;
+            case "Dried": prefab = driedhideItemPrefab; break;
+            case "Preparedhide": prefab = preparedhideItemPrefab; break;
+            case "Fabric": prefab = fabricItemPrefab; break;
+            case "Plank": prefab = plankItemPrefab; break;
+            case "Raft": prefab = raftItemPrefab; break;
+            case "Raftblueprint": prefab = raftblueprintItemPrefab; break;
+            case "Boat": prefab = boatItemPrefab; break;
+            case "Boatblueprint": prefab = boatblueprintItemPrefab; break;
+            case "Ship": prefab = shipItemPrefab; break;
+            case "Shipblueprint": prefab = shipblueprintItemPrefab; break;
         }
 
         if (prefab == null)
@@ -388,14 +525,43 @@ public class PlayerScript : MonoBehaviour
         }
 
         var handItem = Instantiate(prefab, rightHandHold.position, rightHandHold.rotation);
-        handItem.tag = "Item" + itemName;
+        //handItem.tag = "Item" + itemName;
         handItem.transform.SetParent(rightHandHold);
         //handItem.transform.localScale = Vector3.one * 0.5f;
 
         rightHandItem = handItem;
         rightHandItemSave = itemName;
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void SpawnInMap(string itemName)
+    {
+        GameObject prefab = null;
+
+        Debug.Log("Sind wir überhaupt hier");
+
+        switch (itemName)
+        {
+            case "Raft": prefab = raftItemPrefab; break;
+            case "Boat": prefab = boatItemPrefab; break;
+            case "Ship": prefab = shipItemPrefab; break;
+            default:
+                Debug.LogWarning($"SpawnInMap() aufgerufen, aber kein Map-Prefab für {itemName} definiert!");
+                return;
+        }
+
+        if (prefab == null)
+        {
+            Debug.LogWarning($"Kein Prefab für {itemName} gesetzt!");
+            return;
+        }
+
+        // Item in der Welt spawnen
+        var worldItem = Instantiate(prefab, beachSpawnPoint.position, beachSpawnPoint.rotation);
+        worldItem.tag = "WorldItem" + itemName;
+        Debug.Log($"{itemName} am Strand gespawnt!");
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void DropItem(GameObject item, ref GameObject slot, string prefabName)
     {
@@ -437,13 +603,27 @@ public class PlayerScript : MonoBehaviour
             case "Stoneblade": prefab = stonebladeItemPrefab; break;
             case "Stonesplinter": prefab = stonesplinterItemPrefab; break;
             case "Woodpiece": prefab = woodpieceItemPrefab; break;
+            case "Bone": prefab = boneItemPrefab; break;
+            case "Boneshard": prefab = boneshardItemPrefab; break;
+            case "Needle": prefab = needleItemPrefab; break;
+            case "Hide": prefab = hideItemPrefab; break;
+            case "Dried": prefab = driedhideItemPrefab; break;
+            case "Preparedhide": prefab = preparedhideItemPrefab; break;
+            case "Fabric": prefab = fabricItemPrefab; break;
+            case "Plank": prefab = plankItemPrefab; break;
+            case "Raft": prefab = raftItemPrefab; break;
+            case "Raftblueprint": prefab = raftblueprintItemPrefab; break;
+            case "Boat": prefab = boatItemPrefab; break;
+            case "Boatblueprint": prefab = boatblueprintItemPrefab; break;
+            case "Ship": prefab = shipItemPrefab; break;
+            case "Shipblueprint": prefab = shipblueprintItemPrefab; break;
             default: return;
         }
 
         if (prefab != null)
         {
             var handItem = Instantiate(prefab, handHold.position, handHold.rotation);
-            handItem.tag = "Item" + itemName;
+            //handItem.tag = "Item" + itemName;
             handItem.transform.SetParent(handHold);
             //handItem.transform.localScale = Vector3.one * 0.5f;
 
