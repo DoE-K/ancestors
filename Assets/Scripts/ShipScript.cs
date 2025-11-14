@@ -6,6 +6,7 @@ public class ShipScript : MonoBehaviour
 {
     public float moveSpeed = 2f;           // Geschwindigkeit nach links
     public GameObject player;
+    public Transform shipTransform;
     public Transform playerTransform;               // Referenz zum Spieler
     public Collider2D playerCollider;
     public Canvas mapUI;
@@ -61,8 +62,9 @@ public class ShipScript : MonoBehaviour
 
     private void MoveShip()
     {
-        transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        shipTransform.transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         playerTransform.transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        //ScoreManager.SaveFinalScore("Player1");
     }
 
     private IEnumerator ChangeSceneAfterDelay(float delay)

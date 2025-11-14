@@ -67,7 +67,14 @@ public class PlayerScript : MonoBehaviour
     public GameObject shipItemPrefab;
     public GameObject shipblueprintItemPrefab;
 
-    [SerializeField] private Transform beachSpawnPoint;
+    [Header("Spawn Points")]
+    public Transform raftSpawnPoint;
+    public Transform boatSpawnPoint;
+    public Transform shipSpawnPoint;
+
+    // Set speichert, was schon gespawnt wurde
+    private HashSet<string> spawnedItems = new HashSet<string>();
+
 
     public Transform rightHandHold;
     public Transform leftHandHold;
@@ -75,6 +82,8 @@ public class PlayerScript : MonoBehaviour
     private GameObject leftHandItem;
     public string rightHandItemSave;
     public string leftHandItemSave;
+
+    public HighscoreScript hss;
 
     void Start()
     {
@@ -89,6 +98,7 @@ public class PlayerScript : MonoBehaviour
         interactionText.text = "";
 
         //FindObjectOfType<GameDataManager>().LoadGame();
+        GlobalScore.score = 0;
     }
 
     void Update()
@@ -411,9 +421,9 @@ public class PlayerScript : MonoBehaviour
         { "Driedhide+Obsidianblade", "Preparedhide" },
         { "Cordage+Plantfiber", "Fabric" },
 
-        { "Fabric+Cordage", "Sail" }, 
+        { "Cordage+Fabric", "Sail" }, 
         { "Cordage+Plank", "Raft" }, 
-        { "Raftlbueprint+Plank", "Boat" }, //eigentlich mit sail aber später
+        { "Plank+Raftblueprint", "Boat" }, //eigentlich mit sail aber später
         { "Boatblueprint+Plank", "Ship" }
 
     };
@@ -531,34 +541,65 @@ public class PlayerScript : MonoBehaviour
 
         rightHandItem = handItem;
         rightHandItemSave = itemName;
+
+        addScore(10);
     }
 
     void SpawnInMap(string itemName)
     {
+        Debug.Log($"SpawnInMap aufgerufen mit {itemName}");
+
+        // Überprüfen, ob dieses Item schon gespawnt wurde
+        if (spawnedItems.Contains(itemName))
+        {
+            Debug.LogWarning($"{itemName} wurde bereits gecrafted – Spawn wird abgebrochen!");
+            return;
+        }
+
         GameObject prefab = null;
+        Transform spawnPoint = null;
 
-        Debug.Log("Sind wir überhaupt hier");
-
+        // Prefab und Spawnpoint anhand des Namens auswählen
         switch (itemName)
         {
-            case "Raft": prefab = raftItemPrefab; break;
-            case "Boat": prefab = boatItemPrefab; break;
-            case "Ship": prefab = shipItemPrefab; break;
+            case "Raft":
+                prefab = raftItemPrefab;
+                spawnPoint = raftSpawnPoint;
+                addScore(20);
+                break;
+            case "Boat":
+                prefab = boatItemPrefab;
+                spawnPoint = boatSpawnPoint;
+                addScore(30);
+                break;
+            case "Ship":
+                prefab = shipItemPrefab;
+                spawnPoint = shipSpawnPoint;
+                addScore(40);
+                break;
             default:
-                Debug.LogWarning($"SpawnInMap() aufgerufen, aber kein Map-Prefab für {itemName} definiert!");
+                Debug.LogWarning($"Unbekannter Itemname '{itemName}' in SpawnInMap().");
                 return;
         }
 
+        // Sicherstellen, dass alles korrekt gesetzt ist
         if (prefab == null)
         {
             Debug.LogWarning($"Kein Prefab für {itemName} gesetzt!");
             return;
         }
 
+        if (spawnPoint == null)
+        {
+            Debug.LogWarning($"Kein Spawnpoint für {itemName} gesetzt!");
+            return;
+        }
+
         // Item in der Welt spawnen
-        var worldItem = Instantiate(prefab, beachSpawnPoint.position, beachSpawnPoint.rotation);
-        worldItem.tag = "WorldItem" + itemName;
-        Debug.Log($"{itemName} am Strand gespawnt!");
+        Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+        spawnedItems.Add(itemName);
+
+        Debug.Log($"{itemName} erfolgreich am Strand gespawnt!");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -638,6 +679,14 @@ public class PlayerScript : MonoBehaviour
                 leftHandItemSave = itemName;
             }
         }
+    }
+
+    void addScore(int points)
+    {
+        //hss.score = hss.score + points;
+        //PlayerPrefs.SetInt("Score", hss.score);
+
+        GlobalScore.AddScore(points);
     }
 
     void MarkItem(GameObject item, string prefabName)

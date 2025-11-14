@@ -7,6 +7,8 @@ public class UIScript : MonoBehaviour
 {
     private GameDataManager gameDataManager;
 
+    //public ScoreManager 
+
     void Start()
     {
         
@@ -18,22 +20,24 @@ public class UIScript : MonoBehaviour
         SaveSystem.ResetSave();
     }
 
-    public void goSettings()
+    public void goHighscore()
     {
-        if (gameDataManager != null)
-        {
-            Debug.Log("Testing");
-            gameDataManager.SaveGame();
-        }
-        SceneManager.LoadScene("settings");
+        SceneManager.LoadScene("highscore");
     }
 
     public void goMap()
     {
-        if (gameDataManager != null)
+        /*if (gameDataManager != null)
         {
             gameDataManager.SaveGame();
-        }
+        }*/
+
         SceneManager.LoadScene("map");
+        
+    }
+
+    public void goMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 }

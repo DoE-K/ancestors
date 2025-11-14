@@ -1032,6 +1032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   player: {fileID: 4712850647348681109, guid: 33baf1564ec62984aad49a8bd6339c40, type: 3}
+  shipTransform: {fileID: 5469666291821007754}
   playerTransform: {fileID: 1883572767612985133, guid: 33baf1564ec62984aad49a8bd6339c40, type: 3}
   playerCollider: {fileID: 3672013213849653274, guid: 33baf1564ec62984aad49a8bd6339c40, type: 3}
   mapUI: {fileID: 5956286895118306698, guid: 43cf2b05d31dfa8468c9986c1017c694, type: 3}
