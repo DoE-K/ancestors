@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SettingsSceneHandlerScript : MonoBehaviour
@@ -48,4 +48,4 @@ public class SettingsSceneHandlerScript : MonoBehaviour
             Debug.LogWarning("GameDataManager nach Rückkehr nicht gefunden. Stelle sicher, dass GameDataManager in der Map-Szene vorhanden ist.");
         }
     }
-}
+}*/

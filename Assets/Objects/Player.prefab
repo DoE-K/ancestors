@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 6286811710687776785}
   - component: {fileID: 4593840621734478358}
   - component: {fileID: 7525199936976732886}
+  - component: {fileID: -1685486294662538550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -412,11 +413,17 @@ MonoBehaviour:
   boatblueprintItemPrefab: {fileID: 0}
   shipItemPrefab: {fileID: 0}
   shipblueprintItemPrefab: {fileID: 0}
-  beachSpawnPoint: {fileID: 0}
+  SceneRaft: {fileID: 0}
+  SceneBoat: {fileID: 0}
+  SceneShip: {fileID: 0}
+  raftSpawnPoint: {fileID: 0}
+  boatSpawnPoint: {fileID: 0}
+  shipSpawnPoint: {fileID: 0}
   rightHandHold: {fileID: 4963492239918347213}
   leftHandHold: {fileID: 8223296892270100361}
   rightHandItemSave: 
   leftHandItemSave: 
+  hss: {fileID: 0}
 --- !u!114 &4593840621734478358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +448,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c54324ecea6bc449ab0fedfd662270e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1685486294662538550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712850647348681109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68fa27b74413aba439c59b06d183ae88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5129627662452019412

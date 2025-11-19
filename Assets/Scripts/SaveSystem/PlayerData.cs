@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 
 [System.Serializable]
 public class ScenePositionData
@@ -26,3 +26,4 @@ public class PlayerData
     public List<ScenePositionData> scenePositions = new List<ScenePositionData>();
     public List<WorldItemData> worldItems = new List<WorldItemData>();
 }
+*/

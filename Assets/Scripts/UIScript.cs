@@ -5,20 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
-    private GameDataManager gameDataManager;
+    //private GameDataManager gameDataManager;
 
     //public ScoreManager 
 
     void Start()
     {
         
-        gameDataManager = FindObjectOfType<GameDataManager>();
+        //gameDataManager = FindObjectOfType<GameDataManager>();
     }
 
-    public void reset()
+    /*public void reset()
     {
         SaveSystem.ResetSave();
-    }
+    }*/
 
     public void goHighscore()
     {

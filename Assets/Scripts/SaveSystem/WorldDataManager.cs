@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections.Generic;
 
 public class WorldDataManager : MonoBehaviour
@@ -73,4 +73,4 @@ public class WorldDataManager : MonoBehaviour
         var marker = item.AddComponent<WorldItemMarker>();
         marker.prefabName = prefabName;
     }
-}
+}*/

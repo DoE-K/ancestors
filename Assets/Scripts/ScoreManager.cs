@@ -38,10 +38,9 @@ public class ScoreManager : MonoBehaviour
         if(GlobalScore.score > 0)
         {
             SaveFinalScore(playerName);
-            ShowHighscores();
         }
 
-        
+        ShowHighscores();
 
     }
 
@@ -181,6 +180,8 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("lastPlayerScore", finalScore);
 
         AddHighscore(playerName, finalScore);
+
+        GlobalScore.score = 0;
     }
 
 

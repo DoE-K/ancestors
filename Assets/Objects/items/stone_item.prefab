@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -805433035
-  m_SortingLayer: 2
+  m_SortingLayer: 9
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 92c3c04fe3bcaae4e90fd97cd8ab3f15, type: 3}
   m_Color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
@@ -205,3 +205,4 @@ MonoBehaviour:
   itemName: Stone
   prefab: {fileID: 142798818121324930}
   destroyOnPickup: 1
+  AbleToPickup: 1
