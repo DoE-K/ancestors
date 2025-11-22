@@ -48,7 +48,6 @@ public class AchievementScript : MonoBehaviour
     public static bool boatFound;
     public static bool shipFound;
 
-    // Start is called before the first frame update
     void Start()
     {
         BallRunMemorialFound = false;
@@ -91,10 +90,10 @@ public class AchievementScript : MonoBehaviour
         player = GetComponent<PlayerScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        ItemFound();
+        ItemFound(player.rightHandItemSave);
+        ItemFound(player.leftHandItemSave);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -104,19 +103,9 @@ public class AchievementScript : MonoBehaviour
 
     }
 
-    /*private void ItemFound()
+    private void ItemFound(string item)
     {
-        if(player.rightHandItemSave == "Stone" && stoneFound == false)
-        {
-            AddPoints(10);
-            stoneFound = true;  
-        }
-                
-    }*/
-
-    private void ItemFound()
-    {
-        switch (player.rightHandItemSave)
+        switch (item)
         {
             case "Stone":
                 if (!stoneFound)
@@ -367,7 +356,6 @@ public class AchievementScript : MonoBehaviour
                 break;
         }
     }
-
 
     private void Visited(Collider2D other)
     {

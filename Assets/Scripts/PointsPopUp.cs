@@ -20,29 +20,21 @@ public class PointsPopUp : MonoBehaviour
 
         rectTransform = GetComponent<RectTransform>();
         originalPos = rectTransform.anchoredPosition;
-        pointPopup.SetActive(false); //Destroy(gameObject, lifetime); 
+        pointPopup.SetActive(false);
     }
 
     void Update()
     {
-        
-        // Nach oben bewegen
         transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
 
-        // Fade Timer runterzählen
-        //fadeTimer -= Time.deltaTime;
-
-        // Neuen Alpha Wert berechnen
         float newAlpha = text.color.a - Time.deltaTime / fadeTime;
         text.color = new Color(originalColor.r, originalColor.g, originalColor.b, newAlpha);
 
-        // Wenn komplett unsichtbar → deaktivieren
         if (newAlpha <= 0f)
         {
-            //transform.position = new Vector3 (245, 135, 0);
             rectTransform.anchoredPosition = originalPos;
             text.color = originalColor;
-            pointPopup.SetActive(false); // oder gameObject.SetActive(false);
+            pointPopup.SetActive(false);
         }
     }
 }

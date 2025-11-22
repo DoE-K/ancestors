@@ -21,8 +21,8 @@ public class PlayerScript : MonoBehaviour
     private float thirstDecayRate = 0.083f;
 
     private ItemScript nearbyItem;
-    private FoodScript nearbyFood;
-    private WaterScript nearbyWater;
+    //private FoodScript nearbyFood;
+    //private WaterScript nearbyWater;
 
     public GameObject interactionTextObject;
     private TMP_Text interactionText;
@@ -30,7 +30,6 @@ public class PlayerScript : MonoBehaviour
     [Header("Items")]
     public GameObject stoneItemPrfab;
     public GameObject branchItemPrefab;
-    public GameObject silverItemPrefab;
     public GameObject goldItemPrefab;
     public GameObject fireItemPrefab;
     public GameObject cordageItemPrefab;
@@ -144,14 +143,14 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (nearbyWater != null)
+        /*if (nearbyWater != null)
         {
             interactionText.text = "press R to drink";
             if (Input.GetKeyDown(KeyCode.R))
             {
                 DrinkWater(nearbyWater.thirst);
             }
-        }
+        }*/
         if (nearbyItem != null)
         {
             if(nearbyItem.AbleToPickup)
@@ -203,7 +202,7 @@ public class PlayerScript : MonoBehaviour
             nearbyItem = item;
         }
 
-        if (other.CompareTag("Food"))
+        /*if (other.CompareTag("Food"))
         {
             nearbyFood = other.GetComponent<FoodScript>();
         }
@@ -211,7 +210,7 @@ public class PlayerScript : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             nearbyWater = other.GetComponent<WaterScript>();
-        }
+        }*/
 
         if(other.CompareTag("cave"))
         {
@@ -273,7 +272,7 @@ public class PlayerScript : MonoBehaviour
             nearbyItem = null;
         }
 
-        if (other.CompareTag("Food"))
+        /*if (other.CompareTag("Food"))
         {
             if (other.GetComponent<FoodScript>() == nearbyFood)
             {
@@ -289,7 +288,7 @@ public class PlayerScript : MonoBehaviour
                 nearbyWater = null;
                 interactionText.text = "";
             }
-        }
+        }*/
     }
 
     public void EatFood(float amount)
@@ -420,7 +419,6 @@ public class PlayerScript : MonoBehaviour
         {
             case "Stone": prefab = stoneItemPrfab; break;
             case "Branch": prefab = branchItemPrefab; break;
-            case "Silver": prefab = silverItemPrefab; break;
             case "Gold": prefab = goldItemPrefab; break;
             case "Fire": prefab = fireItemPrefab; break;
             case "Cordage": prefab = cordageItemPrefab; break;

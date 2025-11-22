@@ -261,7 +261,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8904815086482355539}
-  - component: {fileID: 9049820185544195607}
   - component: {fileID: 1826633240620368980}
   - component: {fileID: 7247612238994476973}
   m_Layer: 0
@@ -291,18 +290,6 @@ Transform:
   - {fileID: 2600071276659466093}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9049820185544195607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5094125109154100482}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68b1ebf1d6adcea4c9489c9c4b599bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1826633240620368980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +305,7 @@ MonoBehaviour:
   itemName: Driedhide
   prefab: {fileID: 5094125109154100482}
   destroyOnPickup: 1
+  AbleToPickup: 1
 --- !u!61 &7247612238994476973
 BoxCollider2D:
   m_ObjectHideFlags: 0

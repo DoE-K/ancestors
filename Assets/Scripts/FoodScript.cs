@@ -3,22 +3,22 @@ using TMPro;
 
 public class FoodScript : MonoBehaviour
 {
-    public GameObject nameTextObject;
-    private TMP_Text nameText;
+    //public GameObject nameTextObject;
+    //private TMP_Text nameText;
 
     public float nutrition = 20f;
 
-    void Start()
+    /*void Start()
     {
         nameText = nameTextObject.GetComponent<TMP_Text>();
-        nameText.text = "";
+        //nameText.text = "";
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            nameText.text = "food";
+            //nameText.text = "food";
         }
     }
 
@@ -26,7 +26,7 @@ public class FoodScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            nameText.text = "";
+            //nameText.text = "";
         }
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class StrangeGrapeSpawnerScript : MonoBehaviour
 {
@@ -25,4 +25,4 @@ public class StrangeGrapeSpawnerScript : MonoBehaviour
             Instantiate(strangegrapePrefab, randomPosition, Quaternion.identity);
         }
     }
-}
+}*/

@@ -212,8 +212,6 @@ GameObject:
   - component: {fileID: 1070138688065732918}
   - component: {fileID: 3672013213849653274}
   - component: {fileID: 6286811710687776785}
-  - component: {fileID: 4593840621734478358}
-  - component: {fileID: 7525199936976732886}
   - component: {fileID: -1685486294662538550}
   m_Layer: 0
   m_Name: Player
@@ -332,7 +330,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4712850647348681109}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -380,7 +378,6 @@ MonoBehaviour:
   interactionTextObject: {fileID: 0}
   stoneItemPrfab: {fileID: 142798818121324930, guid: d66d23f175db2ef4d83683ffe19ef3eb, type: 3}
   branchItemPrefab: {fileID: 3316177416189948162, guid: 316f395fabec098428d2b062efbafd19, type: 3}
-  silverItemPrefab: {fileID: 0}
   goldItemPrefab: {fileID: 1540950305579844356, guid: 55ce31766c6806a4abed4fb412b24a09, type: 3}
   fireItemPrefab: {fileID: 5667150740996800618, guid: 39113064d0fa4484d9a1acab62e4d73b, type: 3}
   cordageItemPrefab: {fileID: 7945597281177809020, guid: 258c182f758686041bb5ef26ebbcd23f, type: 3}
@@ -393,26 +390,26 @@ MonoBehaviour:
   stonebladeItemPrefab: {fileID: 4041901648752856890, guid: 499eff811f218bb459c6116197810b74, type: 3}
   stonesplinterItemPrefab: {fileID: 111331859293995073, guid: ddd359e056abc7143b579a99dbb3e03f, type: 3}
   woodpieceItemPrefab: {fileID: 1263169382404128017, guid: 8ca08a3f2ccdf4c4cbeec3fb244c92e7, type: 3}
-  urblackberryItemPrefab: {fileID: 0}
-  urblueberryItemPrefab: {fileID: 0}
-  urfigItemPrefab: {fileID: 0}
-  urmangoItemPrefab: {fileID: 0}
-  urdateItemPrefab: {fileID: 0}
-  uravocadoItemPrefab: {fileID: 0}
-  boneItemPrefab: {fileID: 0}
-  boneshardItemPrefab: {fileID: 0}
-  needleItemPrefab: {fileID: 0}
-  hideItemPrefab: {fileID: 0}
-  driedhideItemPrefab: {fileID: 0}
-  preparedhideItemPrefab: {fileID: 0}
-  fabricItemPrefab: {fileID: 0}
-  plankItemPrefab: {fileID: 0}
-  raftItemPrefab: {fileID: 0}
-  raftblueprintItemPrefab: {fileID: 0}
-  boatItemPrefab: {fileID: 0}
-  boatblueprintItemPrefab: {fileID: 0}
-  shipItemPrefab: {fileID: 0}
-  shipblueprintItemPrefab: {fileID: 0}
+  urblackberryItemPrefab: {fileID: 6303558597769425169, guid: a2f262e8ccda72f4f812e18fe4fe7c1c, type: 3}
+  urblueberryItemPrefab: {fileID: 6456227226306244904, guid: 9b35bbbd9bd617740a70ad6337d53e3f, type: 3}
+  urfigItemPrefab: {fileID: 4835013737776260894, guid: 3839454da655b3742a78d151649fc9e6, type: 3}
+  urmangoItemPrefab: {fileID: 4052771012337750849, guid: 0fa0679da75e41b40aca64f20e1d517a, type: 3}
+  urdateItemPrefab: {fileID: 3744868622752771316, guid: 28923515c067a904cafd5b876f77c17c, type: 3}
+  uravocadoItemPrefab: {fileID: 590438084524661798, guid: 86cd5e50d42f911489a6bd53f49e0106, type: 3}
+  boneItemPrefab: {fileID: 5587471492483112975, guid: 62ab0a307658e734899ea79decd99bf0, type: 3}
+  boneshardItemPrefab: {fileID: 7925483701384041044, guid: 2f90e45d443f2ae45a524518920ad7b9, type: 3}
+  needleItemPrefab: {fileID: 3019604760640795716, guid: ee7ed86bc5afe7949bcb36c7c756ffc3, type: 3}
+  hideItemPrefab: {fileID: 4983962007819542311, guid: 812cb86860d2114459566da9e40b2c2e, type: 3}
+  driedhideItemPrefab: {fileID: 5094125109154100482, guid: eb35e4befa276d94ea04b2c6de2934c2, type: 3}
+  preparedhideItemPrefab: {fileID: 468604924990255138, guid: a7aa700280dac3742ad62877b9fcb568, type: 3}
+  fabricItemPrefab: {fileID: 2606798423426715529, guid: dcd50683252793a44a1bbaf16f77d30d, type: 3}
+  plankItemPrefab: {fileID: 7856189760675523022, guid: 5049a94b7b57c95499097261f75c494b, type: 3}
+  raftItemPrefab: {fileID: 1418921707524438535, guid: 406668a9cf16f6e4eaf1f74cce464926, type: 3}
+  raftblueprintItemPrefab: {fileID: 625237795496130405, guid: 7c7d177fdacd68342bc24819b4353a31, type: 3}
+  boatItemPrefab: {fileID: 6383809744462785610, guid: df150a95789344244902db500836026a, type: 3}
+  boatblueprintItemPrefab: {fileID: 474366134012884602, guid: 8115faea744bbc745a8dd491ef6c26c3, type: 3}
+  shipItemPrefab: {fileID: 9191938716970255704, guid: 36c4a4cb66daa0b48b480c40a0b03eb8, type: 3}
+  shipblueprintItemPrefab: {fileID: 4167511053567098098, guid: 338579eb4c0cbd94b8c3d6247405debd, type: 3}
   SceneRaft: {fileID: 0}
   SceneBoat: {fileID: 0}
   SceneShip: {fileID: 0}
@@ -424,32 +421,6 @@ MonoBehaviour:
   rightHandItemSave: 
   leftHandItemSave: 
   hss: {fileID: 0}
---- !u!114 &4593840621734478358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4712850647348681109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d033b0b7f2d3c6b44a3440c70523b5b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trailPrefab: {fileID: 6289577358255235769, guid: 627e0feca2a0c6343ae8341967cf7128, type: 3}
-  spawnInterval: 0.05
---- !u!114 &7525199936976732886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4712850647348681109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c54324ecea6bc449ab0fedfd662270e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1685486294662538550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68fa27b74413aba439c59b06d183ae88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointPopup: {fileID: 0}
+  pointPopupText: {fileID: 0}
 --- !u!1 &5129627662452019412
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +692,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.0997294, g: 0.16220357, b: 0.2603773, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

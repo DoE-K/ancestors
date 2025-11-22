@@ -261,7 +261,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 847171366375804633}
-  - component: {fileID: 2078902638823028451}
   - component: {fileID: 8674433955993718506}
   - component: {fileID: 2263180934701403697}
   m_Layer: 0
@@ -291,18 +290,6 @@ Transform:
   - {fileID: 5257334713414933375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2078902638823028451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587471492483112975}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68b1ebf1d6adcea4c9489c9c4b599bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8674433955993718506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +305,7 @@ MonoBehaviour:
   itemName: Bone
   prefab: {fileID: 5587471492483112975}
   destroyOnPickup: 1
+  AbleToPickup: 1
 --- !u!61 &2263180934701403697
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class FadeAndDestroy : MonoBehaviour
 {
@@ -26,4 +26,4 @@ public class FadeAndDestroy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-}
+}*/

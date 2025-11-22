@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class bird : AnimalScript
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Move();
@@ -18,6 +11,6 @@ public class bird : AnimalScript
 
     public override void Act()
     {
-        // z. B. "Gras fressen" oder stehen bleiben
+        //irgendwas
     }
 }

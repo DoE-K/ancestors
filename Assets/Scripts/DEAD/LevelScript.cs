@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class LevelScript : MonoBehaviour
 {
@@ -8,4 +8,4 @@ public class LevelScript : MonoBehaviour
     {
         Level = Mathf.Clamp(Level + amount, 0f, 100f);
     }
-}
+}*/

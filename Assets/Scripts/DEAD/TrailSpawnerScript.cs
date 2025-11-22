@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class TrailSpawnerScript : MonoBehaviour
 {
@@ -19,4 +19,4 @@ public class TrailSpawnerScript : MonoBehaviour
             timer = 0f;
         }
     }
-}
+}*/

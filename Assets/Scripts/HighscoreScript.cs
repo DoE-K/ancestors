@@ -5,13 +5,13 @@ using TMPro;
 
 public class HighscoreScript : MonoBehaviour
 {
-    public int score;
+    //public int score;
 
     public TMP_Text scoreTxt;
 
-    void Start()
+    void Update()
     {
-        scoreTxt.text = "Score: " + PlayerPrefs.GetInt("Score");
+        scoreTxt.text = "Score: " + GlobalScore.score;
     }
 
 }
