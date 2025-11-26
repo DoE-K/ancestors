@@ -10,16 +10,16 @@ public class BerryGenerator : MonoBehaviour
     public GameObject berry3Prefab;
 
     [Header("Bush Settings")]
-    public Transform berPoints; // Leeres Objekt mit Spawnpunkten
-    public string berryType = "random"; // "diamond", "gold", "stone" oder "random"
+    public Transform berPoints; 
+    public string berryType = "random"; 
 
     [Header("Growth Settings")]
-    public float growDuration = 2f; // Sekunden bis Beere ausgewachsen ist
-    public Vector3 finalScale = Vector3.one; // Zielgröße (z. B. 1,1,1)
+    public float growDuration = 2f; 
+    public Vector3 finalScale = Vector3.one;
 
     [Header("Spawn Delay Settings")]
-    public float minGrowDelay = 1f; // minimale Verzögerung bevor Wachstum startet
-    public float maxGrowDelay = 5f; // maximale Verzögerung
+    public float minGrowDelay = 1f;
+    public float maxGrowDelay = 5f;
 
     void Start()
     {
@@ -36,10 +36,8 @@ public class BerryGenerator : MonoBehaviour
 
     IEnumerator CheckAndSpawnBerry(Transform spawnPoint)
     {
-        // Dauerschleife für diesen Spawnpunkt
         while (true)
         {
-            // Falls keine Beere vorhanden ist, neue wachsen lassen
             if (spawnPoint.childCount == 0)
             {
                 GameObject prefabToSpawn = GetBerryPrefab();
@@ -48,13 +46,11 @@ public class BerryGenerator : MonoBehaviour
                     GameObject berry = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity, spawnPoint);
                     berry.transform.localScale = Vector3.zero;
 
-                    // Zufällige Verzögerung, bevor sie wächst
                     float randomDelay = Random.Range(minGrowDelay, maxGrowDelay);
                     StartCoroutine(GrowBerry(berry, randomDelay));
                 }
             }
 
-            // Alle 0.5 Sekunden überprüfen, ob noch eine Beere da ist
             yield return new WaitForSeconds(0.5f);
         }
     }

@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4956267b7016140a21d6e801a28a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: UrBlueberry
+  itemName: AncientBlueberry
   prefab: {fileID: 6456227226306244904}
   destroyOnPickup: 1
   AbleToPickup: 1

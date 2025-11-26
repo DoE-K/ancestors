@@ -109,11 +109,11 @@ public class PlayerScript : MonoBehaviour
         hunger = Mathf.Clamp(hunger, 0f, 100f);
         thirst = Mathf.Clamp(thirst, 0f, 100f);
 
-        hungerSlider.value = hunger;
-        thirstSlider.value = thirst;
+        //hungerSlider.value = hunger;
+        //thirstSlider.value = thirst;
 
         
-        if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
             if (rightHandItem != null && rightHandItem.CompareTag("Food"))
             {
@@ -141,21 +141,13 @@ public class PlayerScript : MonoBehaviour
                 }
 
             }
-        }
-
-        /*if (nearbyWater != null)
-        {
-            interactionText.text = "press R to drink";
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                DrinkWater(nearbyWater.thirst);
-            }
         }*/
+
         if (nearbyItem != null)
         {
             if(nearbyItem.AbleToPickup)
             {
-                interactionText.text = "press E to pick up " + nearbyItem.itemName;
+                interactionText.text = nearbyItem.itemName;
             }
             
             if (Input.GetKeyDown(KeyCode.E))
@@ -201,16 +193,6 @@ public class PlayerScript : MonoBehaviour
         {
             nearbyItem = item;
         }
-
-        /*if (other.CompareTag("Food"))
-        {
-            nearbyFood = other.GetComponent<FoodScript>();
-        }
-
-        if (other.CompareTag("Water"))
-        {
-            nearbyWater = other.GetComponent<WaterScript>();
-        }*/
 
         if(other.CompareTag("cave"))
         {
@@ -271,24 +253,6 @@ public class PlayerScript : MonoBehaviour
         {
             nearbyItem = null;
         }
-
-        /*if (other.CompareTag("Food"))
-        {
-            if (other.GetComponent<FoodScript>() == nearbyFood)
-            {
-                nearbyFood = null;
-                interactionText.text = "";
-            }
-        }
-
-        if (other.CompareTag("Water"))
-        {
-            if (other.GetComponent<WaterScript>() == nearbyWater)
-            {
-                nearbyWater = null;
-                interactionText.text = "";
-            }
-        }*/
     }
 
     public void EatFood(float amount)
@@ -353,14 +317,14 @@ public class PlayerScript : MonoBehaviour
         { "Bone+Hammerstone", "Boneshard" }, 
         { "Boneshard+Obsidianblade", "Needle" },
 
-        { "Hide+Fire", "Driedhire" },  
+        { "Fire+Hide", "Driedhide" },  
         { "Driedhide+Obsidianblade", "Preparedhide" },
-        { "Cordage+Plantfiber", "Fabric" },
+        { "Needle+Plantfiber", "Fabric" },
 
-        { "Cordage+Fabric", "Sail" }, 
+        //{ "Cordage+Fabric", "Sail" }, 
         { "Cordage+Plank", "Raft" }, 
-        { "Plank+Raftblueprint", "Boat" }, //SAIL TO DO
-        { "Boatblueprint+Plank", "Ship" }
+        { "Fabric+Raftblueprint", "Boat" }, //SAIL TO DO
+        { "Boatblueprint+Cordage", "Ship" } //PLANK
 
     };
 
@@ -431,17 +395,17 @@ public class PlayerScript : MonoBehaviour
             case "Stoneblade": prefab = stonebladeItemPrefab; break;
             case "Stonesplinter": prefab = stonesplinterItemPrefab; break;
             case "Woodpiece": prefab = woodpieceItemPrefab; break;
-            case "UrBlackberry": prefab = urblackberryItemPrefab; break;
-            case "UrBlueberry": prefab = urblueberryItemPrefab; break;
-            case "UrFig": prefab = urfigItemPrefab; break;
-            case "UrMango": prefab = urmangoItemPrefab; break;
-            case "UrDate": prefab = urdateItemPrefab; break; 
-            case "UrAvocado": prefab = uravocadoItemPrefab; break;
+            case "AncientBlackberry": prefab = urblackberryItemPrefab; break;
+            case "AncientBlueberry": prefab = urblueberryItemPrefab; break;
+            case "AncientFig": prefab = urfigItemPrefab; break;
+            case "AncientMango": prefab = urmangoItemPrefab; break;
+            case "AncientDate": prefab = urdateItemPrefab; break; 
+            case "AncientAvocado": prefab = uravocadoItemPrefab; break;
             case "Bone": prefab = boneItemPrefab; break;
             case "Boneshard": prefab = boneshardItemPrefab; break;
             case "Needle": prefab = needleItemPrefab; break;
             case "Hide": prefab = hideItemPrefab; break;
-            case "Dried": prefab = driedhideItemPrefab; break;
+            case "Driedhide": prefab = driedhideItemPrefab; break;
             case "Preparedhide": prefab = preparedhideItemPrefab; break;
             case "Fabric": prefab = fabricItemPrefab; break;
             case "Plank": prefab = plankItemPrefab; break;
@@ -527,72 +491,6 @@ public class PlayerScript : MonoBehaviour
             slot = null;
         }
     }
-
-    /*public void RestoreItem(string itemName, bool isRightHand)
-    {
-        Debug.Log("Moin Moin");
-        Transform handHold = isRightHand ? rightHandHold : leftHandHold;
-        GameObject prefab = null;
-
-        switch (itemName)
-        {
-            case "Stone": prefab = stoneItemPrfab; break;
-            case "Branch": prefab = branchItemPrefab; break;
-            case "Silver": prefab = silverItemPrefab; break;
-            case "Gold": prefab = goldItemPrefab; break;
-            case "Fire": prefab = fireItemPrefab; break;
-            case "Cordage": prefab = cordageItemPrefab; break;
-            case "Hammerstone": prefab = hammerstoneItemPrefab; break;
-            case "Obsidian": prefab = obsidianItemPrefab; break;
-            case "Obsidianblade": prefab = obsidianbladeItemPrefab; break;
-            case "Obsidiansplinter": prefab = obsidiansplinterItemPrefab; break;
-            case "Plantfiber": prefab = plantfiberItemPrefab; break;
-            case "Stick": prefab = stickItemPrefab; break;
-            case "Stoneblade": prefab = stonebladeItemPrefab; break;
-            case "Stonesplinter": prefab = stonesplinterItemPrefab; break;
-            case "Woodpiece": prefab = woodpieceItemPrefab; break;
-            case "Bone": prefab = boneItemPrefab; break;
-            case "Boneshard": prefab = boneshardItemPrefab; break;
-            case "Needle": prefab = needleItemPrefab; break;
-            case "Hide": prefab = hideItemPrefab; break;
-            case "Dried": prefab = driedhideItemPrefab; break;
-            case "Preparedhide": prefab = preparedhideItemPrefab; break;
-            case "Fabric": prefab = fabricItemPrefab; break;
-            case "Plank": prefab = plankItemPrefab; break;
-            case "Raft": prefab = raftItemPrefab; break;
-            case "Raftblueprint": prefab = raftblueprintItemPrefab; break;
-            case "Boat": prefab = boatItemPrefab; break;
-            case "Boatblueprint": prefab = boatblueprintItemPrefab; break;
-            case "Ship": prefab = shipItemPrefab; break;
-            case "Shipblueprint": prefab = shipblueprintItemPrefab; break;
-            default: return;
-        }
-
-        if (prefab != null)
-        {
-            var handItem = Instantiate(prefab, handHold.position, handHold.rotation);
-            //handItem.tag = "Item" + itemName;
-            handItem.transform.SetParent(handHold);
-            //handItem.transform.localScale = Vector3.one * 0.5f;
-
-            if (isRightHand)
-            {
-                rightHandItem = handItem;
-                rightHandItemSave = itemName;
-            }
-            else
-            {
-                leftHandItem = handItem;
-                leftHandItemSave = itemName;
-            }
-        }
-    }*/
-
-    /*void MarkItem(GameObject item, string prefabName)
-    {
-        var marker = item.AddComponent<WorldItemMarker>();
-        marker.prefabName = prefabName;
-    }*/
 
     void Die()
     {

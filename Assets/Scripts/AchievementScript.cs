@@ -123,14 +123,6 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "Silver":
-                if (!silverFound)
-                {
-                    AddPoints(10);
-                    silverFound = true;
-                }
-                break;
-
             case "Gold":
                 if (!goldFound)
                 {
@@ -227,7 +219,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "UrBlackberry":
+            case "AncientBlackberry":
                 if (!urblackberryFound)
                 {
                     AddPoints(5);
@@ -235,7 +227,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "UrBlueberry":
+            case "AncientBlueberry":
                 if (!urblueberryFound)
                 {
                     AddPoints(5);
@@ -243,7 +235,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "UrFig":
+            case "AncientFig":
                 if (!urfigFound)
                 {
                     AddPoints(5);
@@ -251,7 +243,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "UrMango":
+            case "AncientMango":
                 if (!urmangoFound)
                 {
                     AddPoints(5);
@@ -259,7 +251,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "UrDate":
+            case "AncientDate":
                 if (!urdateFound)
                 {
                     AddPoints(5);
@@ -267,7 +259,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "UrAvocado":
+            case "AncientAvocado":
                 if (!uravocadoFound)
                 {
                     AddPoints(5);
@@ -283,7 +275,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "BoneShard":
+            case "Boneshard":
                 if (!boneshardFound)
                 {
                     AddPoints(10);
@@ -307,7 +299,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "DriedHide":
+            case "Driedhide":
                 if (!driedhideFound)
                 {
                     AddPoints(10);
@@ -315,7 +307,7 @@ public class AchievementScript : MonoBehaviour
                 }
                 break;
 
-            case "PreparedHide":
+            case "Preparedhide":
                 if (!preparedhideFound)
                 {
                     AddPoints(10);
@@ -328,6 +320,14 @@ public class AchievementScript : MonoBehaviour
                 {
                     AddPoints(10);
                     fabricFound = true;
+                }
+                break;
+
+            case "Plank":
+                if (!plankFound)
+                {
+                    AddPoints(10);
+                    plankFound = true;
                 }
                 break;
 

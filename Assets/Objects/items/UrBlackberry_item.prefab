@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4956267b7016140a21d6e801a28a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: UrBlackberry
+  itemName: AncientBlackberry
   prefab: {fileID: 6303558597769425169}
   destroyOnPickup: 1
   AbleToPickup: 1

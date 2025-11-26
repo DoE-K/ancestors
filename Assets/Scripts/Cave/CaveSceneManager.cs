@@ -21,7 +21,6 @@ public class CaveSceneManager : MonoBehaviour
             return;
         }
 
-        // Spieler finden
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
@@ -29,7 +28,6 @@ public class CaveSceneManager : MonoBehaviour
             return;
         }
 
-        // Passenden Spawnpunkt suchen
         foreach (var cave in caveSpawns)
         {
             if (cave.caveName == caveName)

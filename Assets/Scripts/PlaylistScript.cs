@@ -27,10 +27,8 @@ public class PlaylistScript : MonoBehaviour
     {
         while (true)
         {
-            // Warte, bis der aktuelle Track zu Ende ist
             yield return new WaitWhile(() => audioSource.isPlaying);
 
-            // Nächsten Track auswählen (zyklisch)
             currentTrackIndex = (currentTrackIndex + 1) % tracks.Length;
             PlayTrack(currentTrackIndex);
         }

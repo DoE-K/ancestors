@@ -31,7 +31,6 @@ public class ScoreManager : MonoBehaviour
         if (PlayerPrefs.HasKey("playerName"))
         {
             Debug.Log("Lade Name vro");
-            //nameInput.text = PlayerPrefs.GetString("playerName");
             playerName = PlayerPrefs.GetString("playerName");
         }
         
@@ -44,9 +43,6 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-    // ----------------------------------------------------
-    // Load Highscores
-    // ----------------------------------------------------
     public HighscoreList LoadHighscores()
     {
         string json = PlayerPrefs.GetString("highscores", "");
@@ -59,9 +55,6 @@ public class ScoreManager : MonoBehaviour
         return JsonUtility.FromJson<HighscoreList>(json);
     }
 
-    // ----------------------------------------------------
-    // Add Score
-    // ----------------------------------------------------
     public void AddHighscore(string name, int score)
     {
         HighscoreList highscores = LoadHighscores();
@@ -72,7 +65,6 @@ public class ScoreManager : MonoBehaviour
             score = score
         });
 
-        // Sort descending
         highscores.list = highscores.list
             .OrderByDescending(e => e.score)
             .ToList();
@@ -82,9 +74,6 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // ----------------------------------------------------
-    // Show Highscores in UI
-    // ----------------------------------------------------
     public void ShowHighscores()
     {
         HighscoreList highscores = LoadHighscores();
@@ -94,7 +83,6 @@ public class ScoreManager : MonoBehaviour
 
         highscoreText.text = "";
 
-        // --- Top 5 immer anzeigen ---
         for (int i = 0; i < 5; i++)
         {
             if (i < highscores.list.Count)
@@ -109,15 +97,13 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        // --- Platzierung des aktuellen Laufs bestimmen ---
         int placement = highscores.list.FindIndex(e =>
             e.playerName == lastName && e.score == lastScore
         );
 
-        // Wenn Score existiert UND nicht in Top 5
         if (placement >= 5 && placement != -1)
         {
-            highscoreText.text += "\n"; // Abstand
+            highscoreText.text += "\n";
             highscoreText.text += $"{placement + 1}. {lastName} - {lastScore}";
         }
     }
@@ -163,9 +149,6 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetString("playerName", playerName);
         PlayerPrefs.Save();
 
-        //SaveFinalScore(playerName);
-        //ShowHighscores();
-
         SceneManager.LoadScene("map");
     }
 
@@ -175,7 +158,6 @@ public class ScoreManager : MonoBehaviour
     {
         int finalScore = GlobalScore.score;
 
-        // Speichere Name und Score von diesem Lauf
         PlayerPrefs.SetString("lastPlayerName", playerName);
         PlayerPrefs.SetInt("lastPlayerScore", finalScore);
 
