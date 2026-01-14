@@ -2,9 +2,9 @@
 
 A playable Unity game that I am developing completely solo.
 
-Genre: Top-Down Crafting RPG 
+Genre: Top-Down Crafting RPG  
 Engine: Unity  
-Platform: Windows, MacOS 
+Platform: Windows, MacOS
 
 Playable on itch.io: https://myst1ceast.itch.io/ancestors
 
@@ -29,6 +29,7 @@ All gameplay-related scripts are located in:
 Assets/
 └── Scripts/
 
+---
 
 ## Tools
 
