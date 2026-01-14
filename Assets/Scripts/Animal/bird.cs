@@ -6,11 +6,6 @@ public class bird : AnimalScript
 {
     void Update()
     {
-        Move();
-    }
-
-    public override void Act()
-    {
-        //irgendwas
+        
     }
 }

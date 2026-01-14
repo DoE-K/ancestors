@@ -7,10 +7,6 @@ using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
-    
-    public float moveSpeed = 5f;
-    private Rigidbody2D rb;
-    private Vector2 movement;
 
     public Slider hungerSlider;
     public Slider thirstSlider;
@@ -84,7 +80,6 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
 
         hungerSlider.maxValue = 100;
         hungerSlider.value = hunger;
@@ -99,10 +94,6 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
         hunger -= hungerDecayRate * Time.deltaTime;
         thirst -= thirstDecayRate * Time.deltaTime;
 
@@ -179,11 +170,6 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (hunger <= 0 || thirst <= 0) Die();
-    }
-
-    void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -6,11 +6,6 @@ public class firefly : AnimalScript
 {
     void Update()
     {
-        Move();
-    }
-
-    public override void Act()
-    {
-        //irgendwas
+        
     }
 }

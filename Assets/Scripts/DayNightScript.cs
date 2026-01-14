@@ -3,7 +3,7 @@ using TMPro;
 
 public class DayNightScript : MonoBehaviour
 {
-    [Tooltip("Sekunden pro voller Spieltag (z.B. 1200 = 20 Minuten real = 24h ingame)")]
+    [Tooltip("e.g. 1200 = 20 minutes real = 24h ingame)")]
     public float dayDuration = 1200f;
 
     public Color overlayColor = Color.black;

@@ -6,11 +6,6 @@ public class bee : AnimalScript
 {
     void Update()
     {
-        Move();
-    }
-
-    public override void Act()
-    {
-        // z. B. "auf blume chillen"
+        
     }
 }
