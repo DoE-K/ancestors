@@ -6,7 +6,7 @@ Genre: Top-Down Crafting RPG
 Engine: Unity  
 Platform: Windows, MacOS
 
-Playable on itch.io: https://myst1ceast.itch.io/ancestors
+Playable on itch.io: https://myst1ceast.itch.io/ancestors (November 27, 2025)
 
 ---
 
