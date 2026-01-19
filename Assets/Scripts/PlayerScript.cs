@@ -8,20 +8,12 @@ using System.Collections.Generic;
 public class PlayerScript : MonoBehaviour
 {
 
-    public Slider hungerSlider;
-    public Slider thirstSlider;
-
-    public float hunger = 100f;
-    public float thirst = 100f;
-    private float hungerDecayRate = 0.028f;
-    private float thirstDecayRate = 0.083f;
-
     private ItemScript nearbyItem;
     //private FoodScript nearbyFood;
     //private WaterScript nearbyWater;
 
-    public GameObject interactionTextObject;
-    private TMP_Text interactionText;
+    //public GameObject interactionTextObject;
+    public TMP_Text interactionText;
 
     [Header("Items")]
     public GameObject stoneItemPrfab;
@@ -67,7 +59,7 @@ public class PlayerScript : MonoBehaviour
     public Transform boatSpawnPoint;
     public Transform shipSpawnPoint;
 
-    private HashSet<string> spawnedItems = new HashSet<string>();
+    //private HashSet<string> spawnedItems = new HashSet<string>();
 
     public Transform rightHandHold;
     public Transform leftHandHold;
@@ -81,58 +73,18 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
 
-        hungerSlider.maxValue = 100;
-        hungerSlider.value = hunger;
-        thirstSlider.maxValue = 100;
-        thirstSlider.value = thirst;
-
-        interactionText = interactionTextObject.GetComponent<TMP_Text>();
+        //interactionText = interactionTextObject.GetComponent<TMP_Text>();
         interactionText.text = "";
 
-        GlobalScore.score = 0;
+        GlobalScore.score = 0; //THE SCENE SHOULD DO THAT
     }
 
     void Update()
     {
-        hunger -= hungerDecayRate * Time.deltaTime;
-        thirst -= thirstDecayRate * Time.deltaTime;
-
-        hunger = Mathf.Clamp(hunger, 0f, 100f);
-        thirst = Mathf.Clamp(thirst, 0f, 100f);
-
-        //hungerSlider.value = hunger;
-        //thirstSlider.value = thirst;
 
         
-        /*if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (rightHandItem != null && rightHandItem.CompareTag("Food"))
-            {
-                var food = rightHandItem.GetComponent<FoodScript>();
-                if (food != null)
-                {
-                    float nutrition = food.nutrition * rightHandItem.transform.localScale.magnitude;
-                    EatFood(nutrition);
-                    Destroy(rightHandItem);
-                    rightHandItem = null;
-                    rightHandItemSave = "";
-                }
 
-            }
-            else if (leftHandItem != null && leftHandItem.CompareTag("Food"))
-            {
-                var food = leftHandItem.GetComponent<FoodScript>();
-                if (food != null)
-                {
-                    float nutrition = food.nutrition * leftHandItem.transform.localScale.magnitude;
-                    EatFood(nutrition);
-                    Destroy(leftHandItem);
-                    leftHandItem = null;
-                    leftHandItemSave = "";
-                }
-
-            }
-        }*/
+        
 
         if (nearbyItem != null)
         {
@@ -169,7 +121,7 @@ public class PlayerScript : MonoBehaviour
             Craft();
         }
 
-        if (hunger <= 0 || thirst <= 0) Die();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -178,56 +130,6 @@ public class PlayerScript : MonoBehaviour
         if (item != null)
         {
             nearbyItem = item;
-        }
-
-        if(other.CompareTag("cave"))
-        {
-            var cave = other.GetComponent<CaveScript>();
-
-            if(!cave.isExit)
-            {
-                if(cave.caveName == "cave0")
-                {
-                    transform.position = new Vector3 (0, -156, 0);
-                }
-
-                if(cave.caveName == "cave1")
-                {
-                    transform.position = new Vector3 (-90, -202, 0);
-                }
-
-                if(cave.caveName == "cave2")
-                {
-                    transform.position = new Vector3 (-185, -202, 0);
-                }
-
-                if(cave.caveName == "cave3")
-                {
-                    transform.position = new Vector3 (-275, -202, 0);
-                }
-            }
-            else
-            {
-                if(cave.caveName == "cave0")
-                {
-                    transform.position = new Vector3 (-45, 28, 0);
-                }
-
-                if(cave.caveName == "cave1")
-                {
-                    transform.position = new Vector3 (-200, 73, 0);
-                }
-
-                if(cave.caveName == "cave2")
-                {
-                    transform.position = new Vector3 (-105, -42, 0);
-                }
-
-                if(cave.caveName == "cave3")
-                {
-                    transform.position = new Vector3 (20, 78, 0);
-                }
-            }
         }
 
     }
@@ -239,18 +141,6 @@ public class PlayerScript : MonoBehaviour
         {
             nearbyItem = null;
         }
-    }
-
-    public void EatFood(float amount)
-    {
-        hunger = Mathf.Clamp(hunger + amount, 0f, 100f);
-        hungerSlider.value = hunger;
-    }
-
-    public void DrinkWater(float amount)
-    {
-        thirst = Mathf.Clamp(thirst + amount, 0f, 100f);
-        thirstSlider.value = thirst;
     }
 
     void PickUpItem(ItemScript item)
@@ -307,10 +197,10 @@ public class PlayerScript : MonoBehaviour
         { "Driedhide+Obsidianblade", "Preparedhide" },
         { "Needle+Plantfiber", "Fabric" },
 
-        //{ "Cordage+Fabric", "Sail" }, 
-        { "Cordage+Plank", "Raft" }, 
-        { "Fabric+Raftblueprint", "Boat" }, //SAIL TO DO
-        { "Boatblueprint+Cordage", "Ship" } //PLANK
+        //{ "Cordage+Fabric", "Sail" }, 'OLD'
+        //{ "Cordage+Plank", "Raft" }, 'OLD'
+        //{ "Fabric+Raftblueprint", "Boat" }, 'OLD'
+        //{ "Plank+Cordage", "Ship" } 'OLD'
 
     };
 
@@ -333,7 +223,7 @@ public class PlayerScript : MonoBehaviour
             leftHandItemSave = "";
             rightHandItemSave = "";
 
-            if (result == "Raft")
+            /*if (result == "Raft")
             {
                 SpawnInMap(result);
                 SpawnInRightHand("Raftblueprint");
@@ -351,7 +241,7 @@ public class PlayerScript : MonoBehaviour
             else
             {
                 SpawnInRightHand(result);
-            }
+            }*/
         }
         else
         {
@@ -395,12 +285,12 @@ public class PlayerScript : MonoBehaviour
             case "Preparedhide": prefab = preparedhideItemPrefab; break;
             case "Fabric": prefab = fabricItemPrefab; break;
             case "Plank": prefab = plankItemPrefab; break;
-            case "Raft": prefab = raftItemPrefab; break;
-            case "Raftblueprint": prefab = raftblueprintItemPrefab; break;
-            case "Boat": prefab = boatItemPrefab; break;
-            case "Boatblueprint": prefab = boatblueprintItemPrefab; break;
+            //case "Raft": prefab = raftItemPrefab; break;
+            //case "Raftblueprint": prefab = raftblueprintItemPrefab; break;
+            //case "Boat": prefab = boatItemPrefab; break;
+            //case "Boatblueprint": prefab = boatblueprintItemPrefab; break;
             case "Ship": prefab = shipItemPrefab; break;
-            case "Shipblueprint": prefab = shipblueprintItemPrefab; break;
+            //case "Shipblueprint": prefab = shipblueprintItemPrefab; break;
         }
 
         if (prefab == null)
@@ -414,51 +304,6 @@ public class PlayerScript : MonoBehaviour
 
         rightHandItem = handItem;
         rightHandItemSave = itemName;
-    }
-
-    void SpawnInMap(string itemName)
-    {
-        Debug.Log($"SpawnInMap aufgerufen mit {itemName}");
-
-        if (spawnedItems.Contains(itemName))
-        {
-            return;
-        }
-
-        GameObject prefab = null;
-        Transform spawnPoint = null;
-
-        switch (itemName)
-        {
-            case "Raft":
-                SceneRaft.SetActive(true);
-                break;
-            case "Boat":
-                SceneBoat.SetActive(true);
-                break;
-            case "Ship":
-                SceneShip.SetActive(true);
-                break;
-            default:
-                Debug.LogWarning($"Unbekannter Itemname '{itemName}' in SpawnInMap().");
-                return;
-        }
-
-        if (prefab == null)
-        {
-            Debug.LogWarning($"Kein Prefab für {itemName} gesetzt!");
-            return;
-        }
-
-        if (spawnPoint == null)
-        {
-            Debug.LogWarning($"Kein Spawnpoint für {itemName} gesetzt!");
-            return;
-        }
-
-        spawnedItems.Add(itemName);
-
-        Debug.Log($"{itemName} erfolgreich am Strand gespawnt!");
     }
 
     void DropItem(GameObject item, ref GameObject slot, string prefabName)
@@ -478,8 +323,4 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void Die()
-    {
-        Debug.Log("Spieler ist gestorben!"); //TO DO
-    }
 }
