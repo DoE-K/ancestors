@@ -465,7 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8838864130293019431}
   - component: {fileID: 2463293988995430461}
-  - component: {fileID: -6616428565371519306}
+  - component: {fileID: -873544985987567614}
   m_Layer: 0
   m_Name: obsidianblade_item
   m_TagString: Item
@@ -542,7 +542,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-6616428565371519306
+--- !u!114 &-873544985987567614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -551,13 +551,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5075815934961665517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4956267b7016140a21d6e801a28a85, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c06d37996405ab42837988c49a98c62, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Obsidianblade
-  prefab: {fileID: 5075815934961665517}
-  destroyOnPickup: 1
-  AbleToPickup: 1
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  data: {fileID: 11400000, guid: 3c387fc6227e75845b82a44b34e7f5d1, type: 2}
 --- !u!1 &6169964761695922267
 GameObject:
   m_ObjectHideFlags: 0

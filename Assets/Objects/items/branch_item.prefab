@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8732549140687588278}
-  - component: {fileID: -1091662474150562304}
   - component: {fileID: 1717162518164415439}
+  - component: {fileID: 7494080094978027783}
   m_Layer: 0
   m_Name: branch_item
   m_TagString: Item
@@ -37,22 +37,6 @@ Transform:
   - {fileID: 3257904387318545149}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1091662474150562304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3316177416189948162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4956267b7016140a21d6e801a28a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Branch
-  prefab: {fileID: 3316177416189948162}
-  destroyOnPickup: 1
-  AbleToPickup: 1
 --- !u!61 &1717162518164415439
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99,6 +83,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7494080094978027783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3316177416189948162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c06d37996405ab42837988c49a98c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  data: {fileID: 11400000, guid: 2a42550f72f3e8a41946a551435e0c76, type: 2}
 --- !u!1 &4609243006436656625
 GameObject:
   m_ObjectHideFlags: 0

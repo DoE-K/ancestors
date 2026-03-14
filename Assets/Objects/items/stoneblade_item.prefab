@@ -282,8 +282,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7387168049020413489}
-  - component: {fileID: 330174158828303812}
   - component: {fileID: 8207475216585142119}
+  - component: {fileID: -6204696432309867357}
   m_Layer: 0
   m_Name: stoneblade_item
   m_TagString: Item
@@ -314,22 +314,6 @@ Transform:
   - {fileID: 8395927015230275505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &330174158828303812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4041901648752856890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4956267b7016140a21d6e801a28a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Stoneblade
-  prefab: {fileID: 4041901648752856890}
-  destroyOnPickup: 1
-  AbleToPickup: 1
 --- !u!61 &8207475216585142119
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -376,6 +360,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-6204696432309867357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4041901648752856890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c06d37996405ab42837988c49a98c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  data: {fileID: 11400000, guid: e5fcb17ece95c9140b942bbb6f17b023, type: 2}
 --- !u!1 &6092956673807557063
 GameObject:
   m_ObjectHideFlags: 0

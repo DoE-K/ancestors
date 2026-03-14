@@ -25,7 +25,7 @@ public class UIScript : MonoBehaviour
 
     public void goLoserMenu()
     {
-        GlobalScore.score = 0;
+        //GlobalScore.score = 0;
         SceneManager.LoadScene("menu");
     }
 

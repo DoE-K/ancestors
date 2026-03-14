@@ -282,8 +282,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8407779136959618871}
-  - component: {fileID: 3507253369542256288}
   - component: {fileID: 8188320003075766950}
+  - component: {fileID: 8535213683374793112}
   m_Layer: 0
   m_Name: obsidiansplinter_item
   m_TagString: Item
@@ -313,22 +313,6 @@ Transform:
   - {fileID: 7661557234090864172}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3507253369542256288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5249744920534276058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4956267b7016140a21d6e801a28a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Obsidiansplinter
-  prefab: {fileID: 5249744920534276058}
-  destroyOnPickup: 1
-  AbleToPickup: 1
 --- !u!61 &8188320003075766950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -375,6 +359,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8535213683374793112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5249744920534276058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c06d37996405ab42837988c49a98c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  data: {fileID: 11400000, guid: 1356157ee5ab9144bad4e27960589321, type: 2}
 --- !u!1 &5922273434754495307
 GameObject:
   m_ObjectHideFlags: 0
