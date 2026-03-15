@@ -152,8 +152,8 @@ public class PlayerInventory : MonoBehaviour
 
         slot.transform.SetParent(null);
 
-        if (slot.GetComponent<Rigidbody2D>() == null)
-            slot.AddComponent<Rigidbody2D>();
+        //if (slot.GetComponent<Rigidbody2D>() == null)
+        //    slot.AddComponent<Rigidbody2D>();
 
         var col = slot.GetComponent<Collider2D>();
         if (col != null) col.enabled = true;

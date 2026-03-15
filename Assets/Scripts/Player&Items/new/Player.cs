@@ -2,20 +2,25 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private ScoreManager _scoreManager;
-
     private void Start()
     {
         GlobalScore.Reset();
     }
 
     /// <summary>
-    /// Call this when the round ends to submit the final score.
-    /// Can be called from Ship.cs or a future GameManager.
+    /// Persists the final score and player name to PlayerPrefs so the
+    /// ScoreManager in the highscore scene can pick it up on load.
+    /// Called from Ship.cs when the scene transition begins.
     /// </summary>
     public void SubmitHighscore()
     {
-        _scoreManager?.SaveFinalScore(PlayerPrefs.GetString("playerName", "XXX"));
+        string playerName = PlayerPrefs.GetString("playerName", "XXX");
+
+        PlayerPrefs.SetString("lastPlayerName", playerName);
+        PlayerPrefs.SetInt("lastPlayerScore", GlobalScore.Score);
+        PlayerPrefs.Save();
+
+        // ScoreManager in the next scene reads GlobalScore.Score > 0
+        // in its Start() and calls SaveFinalScore() automatically
     }
 }
