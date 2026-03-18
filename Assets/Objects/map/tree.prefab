@@ -172,7 +172,7 @@ SpriteRenderer:
   m_SortingLayer: 8
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3554395475562114910, guid: c7593d05492cd9646b64a89df93a2326, type: 3}
+  m_Sprite: {fileID: 6881251626953429071, guid: 559e6ab909ecd934b99a411f9890e492, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -317,7 +317,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6182988905574553471}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -354,7 +354,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8, y: 8}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
 --- !u!61 &8419604049204672508
 BoxCollider2D:
@@ -400,7 +400,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 16, y: 16}
+  m_Size: {x: 6, y: 6}
   m_EdgeRadius: 0
 --- !u!114 &1288208291299141978
 MonoBehaviour:

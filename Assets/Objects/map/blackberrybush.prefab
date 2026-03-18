@@ -191,7 +191,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &8816390190042572629
 MonoBehaviour:
@@ -521,7 +521,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1564162302649416685, guid: a83245b0c3f8c8545a08832ce0b82978, type: 3}
+  m_Sprite: {fileID: -8336157578192535859, guid: 83b459f26887cab4dbf76560eda8e516, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

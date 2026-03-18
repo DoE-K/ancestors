@@ -20,7 +20,7 @@ public class PlayerCave : MonoBehaviour
     {
         if (!other.CompareTag("cave")) return;
 
-        var cave = other.GetComponent<CaveScript>();
+        var cave = other.GetComponent<Cave>();
         if (cave == null) return;
 
         Teleport(cave);
@@ -45,7 +45,7 @@ public class PlayerCave : MonoBehaviour
         }
     }
 
-    private void Teleport(CaveScript cave)
+    private void Teleport(Cave cave)
     {
         if (!_portalLookup.TryGetValue(cave.caveName, out var portal))
         {
