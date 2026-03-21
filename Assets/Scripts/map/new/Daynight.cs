@@ -4,13 +4,12 @@ using TMPro;
 public class DayNight : MonoBehaviour
 {
     [Header("Time Settings")]
-    [Tooltip("Real seconds for one full in-game day. 1200 = 20 min real = 24h in-game.")]
     [SerializeField] private float _dayDuration = 1200f;
 
     [Header("Day/Night Transition")]
     [SerializeField] private Color  _overlayColor     = Color.black;
-    [SerializeField][Range(0f, 1f)] private float _nightAlpha       = 0.8f;
-    [SerializeField][Range(0f, 1f)] private float _dayAlpha         = 0f;
+    [SerializeField][Range(0f, 1f)] private float _nightAlpha      = 0.8f;
+    [SerializeField][Range(0f, 1f)] private float _dayAlpha        = 0f;
     [SerializeField] private float  _sunriseHour      = 6f;
     [SerializeField] private float  _sunsetHour       = 18f;
     [SerializeField] private float  _transitionHours  = 1f;
@@ -26,6 +25,15 @@ public class DayNight : MonoBehaviour
 
     private float _elapsedTime = 0f;
 
+    public bool IsNight
+    {
+        get
+        {
+            float h = GetCurrentGameHour();
+            return h < _sunriseHour || h >= _sunsetHour;
+        }
+    }
+
     // ── Unity lifecycle ──────────────────────────────────────────────────────
 
     private void Update()
@@ -35,7 +43,6 @@ public class DayNight : MonoBehaviour
         _elapsedTime += Time.deltaTime;
 
         float gameHours = GetCurrentGameHour();
-
         UpdateClock(gameHours);
         UpdateOverlay(gameHours);
         UpdateTemperature(gameHours);
@@ -52,7 +59,6 @@ public class DayNight : MonoBehaviour
     private void UpdateClock(float gameHours)
     {
         if (_clockText == null) return;
-
         int hours   = Mathf.FloorToInt(gameHours) % 24;
         int minutes = Mathf.FloorToInt((gameHours - Mathf.Floor(gameHours)) * 60f);
         _clockText.text = $"Time: {hours:D2}:{minutes:D2}";
@@ -61,29 +67,21 @@ public class DayNight : MonoBehaviour
     private void UpdateOverlay(float gameHours)
     {
         if (_globalTintOverlay == null) return;
-
         float alpha = ComputeDayNightAlpha(gameHours);
         _globalTintOverlay.color = new Color(
-            _overlayColor.r,
-            _overlayColor.g,
-            _overlayColor.b,
-            alpha
-        );
+            _overlayColor.r, _overlayColor.g, _overlayColor.b, alpha);
     }
 
     private void UpdateTemperature(float gameHours)
     {
         if (_temperatureText == null) return;
-
         bool isDaytime = gameHours >= _sunriseHour && gameHours < _sunsetHour;
-        int temp = isDaytime ? _dayTemperature : _nightTemperature;
-        _temperatureText.text = $"Temp: {temp}°C";
+        _temperatureText.text = $"Temp: {(isDaytime ? _dayTemperature : _nightTemperature)}°C";
     }
 
     private float ComputeDayNightAlpha(float hour)
     {
         hour = (hour + 24f) % 24f;
-
         float startSunrise = _sunriseHour - _transitionHours;
         float endSunrise   = _sunriseHour + _transitionHours;
         float startSunset  = _sunsetHour  - _transitionHours;
@@ -97,7 +95,6 @@ public class DayNight : MonoBehaviour
         if (hour < endSunset)
             return Mathf.Lerp(_dayAlpha, _nightAlpha,
                 Mathf.InverseLerp(startSunset, endSunset, hour));
-
         return _nightAlpha;
     }
 }

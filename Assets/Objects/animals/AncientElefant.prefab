@@ -320,6 +320,7 @@ MonoBehaviour:
   isPredator: 0
   speed: 0.5
   home: {fileID: 0}
+  isHome: 0
   health: 10
   food: 100
   drink: 100
