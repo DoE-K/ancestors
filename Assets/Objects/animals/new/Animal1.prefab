@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -1794253194699092655}
   - component: {fileID: -6387909700073538237}
   - component: {fileID: 750678704991071185}
+  - component: {fileID: 1333279456853277975}
   - component: {fileID: 6096230981749078700}
   - component: {fileID: 6429696067827036377}
   - component: {fileID: 465325074392336742}
@@ -106,6 +107,25 @@ MonoBehaviour:
   _arrivalThreshold: 1.5
   _maxFoodMemories: 5
   _maxWaterMemories: 5
+--- !u!114 &1333279456853277975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860497398567774966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f46e680c263814a94e0a3a0bec96c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalSteering
+  _lookAheadDistance: 2.5
+  _avoidanceWeight: 0.8
+  _rayCount: 7
+  _fanAngle: 120
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &6096230981749078700
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,11 +1,5 @@
 using UnityEngine;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// All FSM states for the animal AI.
-// Each state has exactly one job. AnimalBrain decides which is active.
-// ─────────────────────────────────────────────────────────────────────────────
-
-/// <summary>Wanders slowly within a radius. Default state.</summary>
 public class IdleState : IAnimalState
 {
     private readonly Animal _animal;
@@ -14,20 +8,16 @@ public class IdleState : IAnimalState
 
     public IdleState(Animal animal) => _animal = animal;
 
-    public void Enter()
-    {
-        PickNewWanderTarget();
-    }
+    public void Enter() => PickNewWanderTarget();
+    public void Exit()  { }
 
     public void Execute()
     {
         _wanderTimer -= Time.deltaTime;
         if (_wanderTimer <= 0f) PickNewWanderTarget();
 
-        _animal.MoveTowards(_wanderTarget, _animal.Data.moveSpeed * 0.5f);
+        _animal.MoveTowardsWithAvoidance(_wanderTarget, _animal.Data.moveSpeed * 0.5f);
     }
-
-    public void Exit() { }
 
     private void PickNewWanderTarget()
     {
@@ -39,35 +29,26 @@ public class IdleState : IAnimalState
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// <summary>Moves towards the nearest known food source.</summary>
 public class SeekFoodState : IAnimalState
 {
     private readonly Animal _animal;
-
     public SeekFoodState(Animal animal) => _animal = animal;
-
-    public void Enter()  { }
-    public void Exit()   { }
+    public void Enter() { }
+    public void Exit()  { }
 
     public void Execute()
     {
         var food = _animal.Sensor.NearestFood;
         if (food == null) return;
-
-        _animal.MoveTowards(food.position, _animal.Data.moveSpeed);
+        _animal.MoveTowardsWithAvoidance(food.position, _animal.Data.moveSpeed);
     }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// <summary>
-/// Eats the nearest food item. Destroys the fruit GameObject so
-/// FruitGenerator detects childCount == 0 and regrows automatically.
-/// </summary>
 public class EatState : IAnimalState
 {
     private readonly Animal _animal;
-
     public EatState(Animal animal) => _animal = animal;
 
     public void Enter()
@@ -78,11 +59,8 @@ public class EatState : IAnimalState
         float dist = Vector2.Distance(_animal.transform.position, food.position);
         if (dist > _animal.Data.interactRange) return;
 
-        // Destroy the fruit — FruitGenerator will regrow it automatically
         Object.Destroy(food.gameObject);
         _animal.Needs.Eat(_animal.Data.eatRestoreAmount);
-
-        Debug.Log($"[EatState] {_animal.name} ate a fruit.");
     }
 
     public void Execute() { }
@@ -91,32 +69,26 @@ public class EatState : IAnimalState
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// <summary>Moves towards the nearest water source.</summary>
 public class SeekWaterState : IAnimalState
 {
     private readonly Animal _animal;
-
     public SeekWaterState(Animal animal) => _animal = animal;
-
-    public void Enter()  { }
-    public void Exit()   { }
+    public void Enter() { }
+    public void Exit()  { }
 
     public void Execute()
     {
         var water = _animal.Sensor.NearestWater;
         if (water == null) return;
-
-        _animal.MoveTowards(water.position, _animal.Data.moveSpeed);
+        _animal.MoveTowardsWithAvoidance(water.position, _animal.Data.moveSpeed);
     }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// <summary>Drinks from the nearest water source when in range.</summary>
 public class DrinkState : IAnimalState
 {
     private readonly Animal _animal;
-
     public DrinkState(Animal animal) => _animal = animal;
 
     public void Enter()
@@ -128,7 +100,6 @@ public class DrinkState : IAnimalState
         if (dist > _animal.Data.interactRange) return;
 
         _animal.Needs.Drink(_animal.Data.drinkRestoreAmount);
-        Debug.Log($"[DrinkState] {_animal.name} drank water.");
     }
 
     public void Execute() { }
@@ -137,23 +108,19 @@ public class DrinkState : IAnimalState
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// <summary>Flees away from the nearest predator at full speed.</summary>
 public class FleeState : IAnimalState
 {
     private readonly Animal _animal;
-
     public FleeState(Animal animal) => _animal = animal;
-
-    public void Enter()  { }
-    public void Exit()   { }
+    public void Enter() { }
+    public void Exit()  { }
 
     public void Execute()
     {
         var predator = _animal.Sensor.NearestPredator;
         if (predator == null) return;
 
-        // Move in the opposite direction from the predator
-        var fleeDir  = ((Vector2)_animal.transform.position - (Vector2)predator.position).normalized;
+        var fleeDir    = ((Vector2)_animal.transform.position - (Vector2)predator.position).normalized;
         var fleeTarget = (Vector2)_animal.transform.position + fleeDir * 10f;
         _animal.MoveTowards(fleeTarget, _animal.Data.fleeSpeed);
     }
@@ -161,57 +128,40 @@ public class FleeState : IAnimalState
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// <summary>Navigates to the animal's home / shelter.</summary>
 public class GoHomeState : IAnimalState
 {
     private readonly Animal _animal;
-
     public GoHomeState(Animal animal) => _animal = animal;
-
-    public void Enter()  { }
-    public void Exit()   { }
+    public void Enter() { }
+    public void Exit()  { }
 
     public void Execute()
     {
         var home = _animal.Sensor.NearestHome;
         if (home == null) return;
-
-        _animal.MoveTowards(home.position, _animal.Data.moveSpeed);
+        _animal.MoveTowardsWithAvoidance(home.position, _animal.Data.moveSpeed);
     }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// <summary>Stays at home and restores energy while it is night.</summary>
 public class SleepState : IAnimalState
 {
     private readonly Animal _animal;
-
     public SleepState(Animal animal) => _animal = animal;
-
-    public void Enter()  => Debug.Log($"[SleepState] {_animal.name} is sleeping.");
-    public void Exit()   => Debug.Log($"[SleepState] {_animal.name} woke up.");
-
-    public void Execute()
-    {
-        _animal.Needs.RestoreEnergy();
-    }
+    public void Enter() { }
+    public void Exit()  { }
+    public void Execute() => _animal.Needs.RestoreEnergy();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// <summary>
-/// Moves toward a nearby mate. When in range, spawns an offspring
-/// using the same AnimalData (with optional future mutation support).
-/// </summary>
 public class ReproduceState : IAnimalState
 {
     private readonly Animal _animal;
-
     public ReproduceState(Animal animal) => _animal = animal;
-
-    public void Enter()  { }
-    public void Exit()   { }
+    public void Enter() { }
+    public void Exit()  { }
 
     public void Execute()
     {
@@ -222,7 +172,7 @@ public class ReproduceState : IAnimalState
 
         if (dist > _animal.Data.interactRange)
         {
-            _animal.MoveTowards(mate.position, _animal.Data.moveSpeed);
+            _animal.MoveTowardsWithAvoidance(mate.position, _animal.Data.moveSpeed);
             return;
         }
 
@@ -232,14 +182,74 @@ public class ReproduceState : IAnimalState
 
     private void SpawnOffspring()
     {
-        // Spawn midpoint between the two parents
         var spawnPos = (Vector2)_animal.transform.position + Random.insideUnitCircle * 1.5f;
         var offspring = Object.Instantiate(_animal.gameObject, spawnPos, Quaternion.identity);
+        offspring.GetComponent<AnimalNeeds>()?.Initialise(_animal.Data);
+    }
+}
 
-        // Reset the offspring's needs to full
-        var needs = offspring.GetComponent<AnimalNeeds>();
-        needs?.Initialise(_animal.Data);
+// ─────────────────────────────────────────────────────────────────────────────
 
-        Debug.Log($"[ReproduceState] {_animal.name} spawned offspring.");
+public class SeekMemoryFoodState : IAnimalState
+{
+    private readonly Animal       _animal;
+    private readonly AnimalMemory _memory;
+    private Vector2?              _target;
+
+    public SeekMemoryFoodState(Animal animal, AnimalMemory memory)
+    {
+        _animal = animal;
+        _memory = memory;
+    }
+
+    public void Enter()  => _target = _memory.GetBestFoodMemory();
+    public void Exit()   { }
+
+    public void Execute()
+    {
+        if (_target == null) return;
+
+        _animal.MoveTowardsWithAvoidance(_target.Value, _animal.Data.moveSpeed);
+
+        float dist = Vector2.Distance(_animal.transform.position, _target.Value);
+        if (dist > _animal.Data.interactRange) return;
+
+        if (_animal.Sensor.CanSeeFood) return;
+
+        _memory.ForgetFoodAt(_target.Value);
+        _target = _memory.GetBestFoodMemory();
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+public class SeekMemoryWaterState : IAnimalState
+{
+    private readonly Animal       _animal;
+    private readonly AnimalMemory _memory;
+    private Vector2?              _target;
+
+    public SeekMemoryWaterState(Animal animal, AnimalMemory memory)
+    {
+        _animal = animal;
+        _memory = memory;
+    }
+
+    public void Enter()  => _target = _memory.GetBestWaterMemory();
+    public void Exit()   { }
+
+    public void Execute()
+    {
+        if (_target == null) return;
+
+        _animal.MoveTowardsWithAvoidance(_target.Value, _animal.Data.moveSpeed);
+
+        float dist = Vector2.Distance(_animal.transform.position, _target.Value);
+        if (dist > _animal.Data.interactRange) return;
+
+        if (_animal.Sensor.CanSeeWater) return;
+
+        _memory.ForgetWaterAt(_target.Value);
+        _target = _memory.GetBestWaterMemory();
     }
 }

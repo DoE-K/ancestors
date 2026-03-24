@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class SeekMemoryFoodState : IAnimalState
 {
@@ -77,4 +77,4 @@ public class SeekMemoryWaterState : IAnimalState
     }
 
     public void Exit() { }
-}
+}*/
