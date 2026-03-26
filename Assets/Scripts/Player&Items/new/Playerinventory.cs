@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -8,80 +8,81 @@ public class PlayerInventory : MonoBehaviour
     public Transform rightHandHold;
     public Transform leftHandHold;
 
-    [Header("UI")]
-    public TMP_Text interactionText;
-
-    // ── Events ──────────────────────────────────────────────────────────────
-    /// <summary>Fired when an item lands in any hand slot. Passes the ItemData.</summary>
+    // ── Events ───────────────────────────────────────────────────────────────
     public event Action<ItemData> OnItemPickedUp;
-
-    /// <summary>Fired when an item is dropped from any hand slot.</summary>
     public event Action<ItemData> OnItemDropped;
+    public event Action           OnHandsChanged; // fired whenever hand contents change
 
-    // ── Public read-only state ───────────────────────────────────────────────
+    // ── Public read-only state ────────────────────────────────────────────────
     public string RightHandItemName { get; private set; } = string.Empty;
     public string LeftHandItemName  { get; private set; } = string.Empty;
+    public bool   BothHandsFull     => _rightHandItem != null && _leftHandItem != null;
 
-    // ── Private state ────────────────────────────────────────────────────────
-    private GameObject _rightHandItem;
-    private GameObject _leftHandItem;
-    private Item _nearbyItem;
+    // Up to 2 nearby items exposed for the UI
+    public IReadOnlyList<Item> NearbyItems => _nearbyItems;
 
-    // ── Unity lifecycle ──────────────────────────────────────────────────────
+    // ── Private state ─────────────────────────────────────────────────────────
+    private GameObject    _rightHandItem;
+    private GameObject    _leftHandItem;
+    private List<Item>    _nearbyItems = new List<Item>(2);
 
-    void Update()
-    {
-        UpdateInteractionText();
-        HandlePickupInput();
-        HandleDropInput();
-    }
+    // ── Unity lifecycle ───────────────────────────────────────────────────────
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         var item = other.GetComponent<Item>();
-        if (item != null)
-            _nearbyItem = item;
+        if (item == null || !item.AbleToPickup) return;
+        if (_nearbyItems.Count >= 2) return;
+        if (_nearbyItems.Contains(item)) return;
+
+        _nearbyItems.Add(item);
+        OnHandsChanged?.Invoke();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         var item = other.GetComponent<Item>();
-        if (item != null && item == _nearbyItem)
-            _nearbyItem = null;
+        if (item == null) return;
+
+        if (_nearbyItems.Remove(item))
+            OnHandsChanged?.Invoke();
     }
 
-    // ── Input handling ───────────────────────────────────────────────────────
+    // ── Public API — called by PlayerActionUI buttons ─────────────────────────
 
-    private void UpdateInteractionText()
+    public void TryPickUp(Item item)
     {
-        interactionText.text = (_nearbyItem != null && _nearbyItem.AbleToPickup)
-            ? _nearbyItem.ItemName
-            : string.Empty;
+        if (item == null || !item.AbleToPickup) return;
+
+        if (_rightHandItem == null)
+            SpawnIntoSlot(item.data, ref _rightHandItem, rightHandHold, isRight: true);
+        else if (_leftHandItem == null)
+            SpawnIntoSlot(item.data, ref _leftHandItem, leftHandHold, isRight: false);
+        else
+            return; // both hands full
+
+        if (item.DestroyOnPickup)
+            Destroy(item.gameObject);
+        else
+            Debug.Log($"[PlayerInventory] {item.ItemName} entnommen, Quelle bleibt bestehen.");
+
+        _nearbyItems.Remove(item);
+        OnHandsChanged?.Invoke();
     }
 
-    private void HandlePickupInput()
-    {
-        if (_nearbyItem == null) return;
-        if (!Input.GetKeyDown(KeyCode.E)) return;
+    /// <summary>Drops the item in the right hand.</summary>
+    public void DropRight() => DropSlot(ref _rightHandItem, isRight: true);
 
-        TryPickUp(_nearbyItem);
-        _nearbyItem = null;
-    }
+    /// <summary>Drops the item in the left hand.</summary>
+    public void DropLeft()  => DropSlot(ref _leftHandItem, isRight: false);
 
-    private void HandleDropInput()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-            DropSlot(ref _rightHandItem, isRight: true);
-
-        if (Input.GetKeyDown(KeyCode.U))
-            DropSlot(ref _leftHandItem, isRight: false);
-    }
-
-    // ── Public API ───────────────────────────────────────────────────────────
-
+    /// <summary>
+    /// Spawns a crafting result into the first free hand.
+    /// Called by PlayerCrafter after a successful craft.
+    /// </summary>
     public bool TrySpawnIntoHand(ItemData itemData)
     {
-        if (itemData == null || itemData.prefab == null)
+        if (itemData?.prefab == null)
         {
             Debug.LogWarning("[PlayerInventory] TrySpawnIntoHand: itemData or prefab is null.");
             return false;
@@ -98,42 +99,18 @@ public class PlayerInventory : MonoBehaviour
             return true;
         }
 
-        Debug.Log("[PlayerInventory] Both hands are full.");
         return false;
     }
 
-    public bool BothHandsFull => _rightHandItem != null && _leftHandItem != null;
-
+    /// <summary>Destroys both hand items. Called by PlayerCrafter to consume ingredients.</summary>
     public void ClearBothHands()
     {
         DestroyHandItem(ref _rightHandItem, isRight: true);
-        DestroyHandItem(ref _leftHandItem, isRight: false);
+        DestroyHandItem(ref _leftHandItem,  isRight: false);
+        OnHandsChanged?.Invoke();
     }
 
-    // ── Private helpers ──────────────────────────────────────────────────────
-
-    private void TryPickUp(Item item)
-    {
-        if (!item.AbleToPickup) return;
-
-        if (_rightHandItem == null)
-        {
-            SpawnIntoSlot(item.data, ref _rightHandItem, rightHandHold, isRight: true);
-        }
-        else if (_leftHandItem == null)
-        {
-            SpawnIntoSlot(item.data, ref _leftHandItem, leftHandHold, isRight: false);
-        }
-        else
-        {
-            return; // Both hands full — do not destroy the world item
-        }
-
-        if (item.DestroyOnPickup)
-            Destroy(item.gameObject);
-        else
-            Debug.Log($"[PlayerInventory] {item.ItemName} entnommen, Quelle bleibt bestehen.");
-    }
+    // ── Private helpers ───────────────────────────────────────────────────────
 
     private void SpawnIntoSlot(ItemData itemData, ref GameObject slot, Transform hold, bool isRight)
     {
@@ -144,6 +121,7 @@ public class PlayerInventory : MonoBehaviour
         else         LeftHandItemName  = itemData.itemName;
 
         OnItemPickedUp?.Invoke(itemData);
+        OnHandsChanged?.Invoke();
     }
 
     private void DropSlot(ref GameObject slot, bool isRight)
@@ -152,8 +130,8 @@ public class PlayerInventory : MonoBehaviour
 
         slot.transform.SetParent(null);
 
-        //if (slot.GetComponent<Rigidbody2D>() == null)
-        //    slot.AddComponent<Rigidbody2D>();
+        if (slot.GetComponent<Rigidbody2D>() == null)
+            slot.AddComponent<Rigidbody2D>();
 
         var col = slot.GetComponent<Collider2D>();
         if (col != null) col.enabled = true;
@@ -165,6 +143,8 @@ public class PlayerInventory : MonoBehaviour
 
         if (isRight) RightHandItemName = string.Empty;
         else         LeftHandItemName  = string.Empty;
+
+        OnHandsChanged?.Invoke();
     }
 
     private void DestroyHandItem(ref GameObject slot, bool isRight)

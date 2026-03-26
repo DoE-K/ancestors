@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 2413384810591528928}
   - component: {fileID: 443405554567500794}
   - component: {fileID: 8810234552640474026}
+  - component: {fileID: 4512672639411183149}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Player
@@ -421,7 +422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd232e0f5340dd14db1c6e40a8a63f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _scoreManager: {fileID: 0}
 --- !u!114 &8500682328715380242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +451,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
   rightHandHold: {fileID: 3278841517358232196}
   leftHandHold: {fileID: 6738449699248678378}
-  interactionText: {fileID: 0}
 --- !u!114 &2814357753001606226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,3 +509,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCave
   _portals: []
+--- !u!114 &4512672639411183149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8029510603902442761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1754b3336f6c249aaab83c2acf7379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerActionUI
+  _inventory: {fileID: 0}
+  _crafter: {fileID: 0}
+  _pickupButton1: {fileID: 0}
+  _pickupButton1Label: {fileID: 0}
+  _pickupButton2: {fileID: 0}
+  _pickupButton2Label: {fileID: 0}
+  _craftButton: {fileID: 0}
+  _craftButtonLabel: {fileID: 0}

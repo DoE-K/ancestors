@@ -3,27 +3,68 @@ using UnityEngine;
 public class IdleState : IAnimalState
 {
     private readonly Animal _animal;
+ 
     private Vector2 _wanderTarget;
     private float   _wanderTimer;
-
+    private float   _pauseTimer;
+    private bool    _isPausing;
+ 
+    private const float ArrivalThreshold = 1.0f;
+    private const float MinPause         = 0.5f;
+    private const float MaxPause         = 1.5f;
+ 
     public IdleState(Animal animal) => _animal = animal;
-
+ 
     public void Enter() => PickNewWanderTarget();
     public void Exit()  { }
-
+ 
     public void Execute()
     {
+        // Pausing — stand still, count down
+        if (_isPausing)
+        {
+            _animal.StopMoving();
+            _pauseTimer -= Time.deltaTime;
+ 
+            if (_pauseTimer <= 0f)
+            {
+                _isPausing = false;
+                PickNewWanderTarget();
+            }
+            return;
+        }
+ 
+        // Timer expired — start a pause before picking next target
         _wanderTimer -= Time.deltaTime;
-        if (_wanderTimer <= 0f) PickNewWanderTarget();
-
+        if (_wanderTimer <= 0f)
+        {
+            StartPause();
+            return;
+        }
+ 
+        // Check if close enough to target — start pause
+        float dist = Vector2.Distance(_animal.transform.position, _wanderTarget);
+        if (dist < ArrivalThreshold)
+        {
+            StartPause();
+            return;
+        }
+ 
         _animal.MoveTowardsWithAvoidance(_wanderTarget, _animal.Data.moveSpeed * 0.5f);
     }
-
+ 
     private void PickNewWanderTarget()
     {
+        // Bias toward continuing in the same general direction for more natural movement
         var offset = Random.insideUnitCircle * _animal.Data.wanderRadius;
         _wanderTarget = (Vector2)_animal.transform.position + offset;
-        _wanderTimer  = Random.Range(2f, 5f);
+        _wanderTimer  = Random.Range(3f, 7f);
+    }
+ 
+    private void StartPause()
+    {
+        _isPausing  = true;
+        _pauseTimer = Random.Range(MinPause, MaxPause);
     }
 }
 

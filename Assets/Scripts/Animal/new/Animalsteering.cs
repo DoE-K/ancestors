@@ -3,44 +3,93 @@ using UnityEngine;
 public class AnimalSteering : MonoBehaviour
 {
     [Header("Avoidance Settings")]
-    [Tooltip("How far ahead the animal looks for obstacles.")]
-    [SerializeField] private float _lookAheadDistance = 2.5f;
-
-    [Tooltip("How strongly the animal steers away from obstacles (0–1).")]
-    [SerializeField][Range(0f, 1f)] private float _avoidanceWeight = 0.8f;
-
-    [Tooltip("Number of rays in the fan (more = smoother but more expensive).")]
-    [SerializeField] private int _rayCount = 7;
-
-    [Tooltip("Total angle of the ray fan in degrees.")]
-    [SerializeField] private float _fanAngle = 120f;
-
-    [Tooltip("Layers considered as obstacles (trees, bushes, rocks etc.).")]
+    [SerializeField] private float _lookAheadDistance  = 3f;
+    [SerializeField][Range(0f, 1f)] private float _avoidanceWeight = 0.85f;
+    [SerializeField] private int   _rayCount           = 9;
+    [SerializeField] private float _fanAngle           = 150f;
     [SerializeField] private LayerMask _obstacleLayer;
+
+    [Header("Unstuck Settings")]
+    [Tooltip("Seconds without meaningful movement before forcing a new direction.")]
+    [SerializeField] private float _stuckTime          = 1.2f;
+    [Tooltip("Minimum distance moved per second to be considered 'not stuck'.")]
+    [SerializeField] private float _moveThreshold      = 0.15f;
+
+    private Rigidbody2D _rb;
+    private float       _stuckTimer     = 0f;
+    private Vector2     _lastPos;
+    private Vector2     _unstuckDir     = Vector2.zero;
+    private float       _unstuckTimer   = 0f;
+    private const float UnstuckDuration = 0.6f;
+
+    private void Awake()
+    {
+        _rb      = GetComponent<Rigidbody2D>();
+        _lastPos = transform.position;
+    }
+
+    private void Update()
+    {
+        CheckIfStuck();
+    }
 
     // ── Public API ────────────────────────────────────────────────────────────
 
     public Vector2 ComputeSteerDirection(Vector2 currentPos, Vector2 targetPos, float speed)
     {
         var desiredDir = (targetPos - currentPos).normalized;
-
         if (desiredDir == Vector2.zero) return Vector2.zero;
 
-        var avoidance = ComputeAvoidance(currentPos, desiredDir);
+        // If actively unstucking, follow that direction
+        if (_unstuckTimer > 0f)
+        {
+            _unstuckTimer -= Time.deltaTime;
+            return _unstuckDir * speed;
+        }
 
-        // Blend desired direction with avoidance
-        var steerDir = (desiredDir + avoidance * _avoidanceWeight).normalized;
+        var avoidance = ComputeAvoidance(currentPos, desiredDir);
+        var steerDir  = (desiredDir + avoidance * _avoidanceWeight).normalized;
 
         return steerDir * speed;
     }
 
-    // ── Private methods ───────────────────────────────────────────────────────
+    // ── Unstuck logic ─────────────────────────────────────────────────────────
+
+    private void CheckIfStuck()
+    {
+        if (_rb == null) return;
+
+        float moved = Vector2.Distance((Vector2)transform.position, _lastPos);
+        _lastPos    = transform.position;
+
+        bool isMoving = _rb.linearVelocity.magnitude > 0.1f;
+
+        if (isMoving && moved < _moveThreshold * Time.deltaTime * 60f)
+        {
+            _stuckTimer += Time.deltaTime;
+
+            if (_stuckTimer >= _stuckTime)
+            {
+                // Pick a random perpendicular direction to break free
+                float angle   = Random.Range(60f, 120f) * (Random.value > 0.5f ? 1f : -1f);
+                _unstuckDir   = RotateVector(_rb.linearVelocity.normalized, angle).normalized;
+                _unstuckTimer = UnstuckDuration;
+                _stuckTimer   = 0f;
+            }
+        }
+        else
+        {
+            _stuckTimer = 0f;
+        }
+    }
+
+    // ── Avoidance ─────────────────────────────────────────────────────────────
 
     private Vector2 ComputeAvoidance(Vector2 origin, Vector2 forward)
     {
-        var avoidance   = Vector2.zero;
-        int hitCount    = 0;
-        float angleStep = _rayCount > 1 ? _fanAngle / (_rayCount - 1) : 0f;
+        var   avoidance  = Vector2.zero;
+        int   hitCount   = 0;
+        float angleStep  = _rayCount > 1 ? _fanAngle / (_rayCount - 1) : 0f;
         float startAngle = -_fanAngle / 2f;
 
         for (int i = 0; i < _rayCount; i++)
@@ -51,9 +100,12 @@ public class AnimalSteering : MonoBehaviour
 
             if (!hit) continue;
 
-            // The closer the obstacle, the stronger the push away
             float proximity = 1f - (hit.distance / _lookAheadDistance);
-            avoidance      += -rayDir * proximity;
+
+            // Center ray (straight ahead) gets double weight — direct block = hard steer
+            float rayWeight = (Mathf.Abs(angle) < angleStep * 0.5f) ? 2f : 1f;
+
+            avoidance += -rayDir * proximity * rayWeight;
             hitCount++;
         }
 
@@ -68,17 +120,15 @@ public class AnimalSteering : MonoBehaviour
         return new Vector2(cos * v.x - sin * v.y, sin * v.x + cos * v.y);
     }
 
-    // ── Editor visualisation ──────────────────────────────────────────────────
+    // ── Gizmos ────────────────────────────────────────────────────────────────
 
     private void OnDrawGizmosSelected()
     {
-        if (!Application.isPlaying) return;
+        if (!Application.isPlaying || _rb == null) return;
+        if (_rb.linearVelocity == Vector2.zero) return;
 
-        var rb = GetComponent<Rigidbody2D>();
-        if (rb == null || rb.linearVelocity == Vector2.zero) return;
-
-        var forward     = rb.linearVelocity.normalized;
-        float angleStep = _rayCount > 1 ? _fanAngle / (_rayCount - 1) : 0f;
+        var   forward    = _rb.linearVelocity.normalized;
+        float angleStep  = _rayCount > 1 ? _fanAngle / (_rayCount - 1) : 0f;
         float startAngle = -_fanAngle / 2f;
 
         for (int i = 0; i < _rayCount; i++)
@@ -88,8 +138,15 @@ public class AnimalSteering : MonoBehaviour
             var   hit    = Physics2D.Raycast(transform.position, rayDir,
                                _lookAheadDistance, _obstacleLayer);
 
-            Gizmos.color = hit ? Color.red : new Color(0f, 1f, 0f, 0.4f);
+            Gizmos.color = hit ? Color.red : new Color(0f, 1f, 0f, 0.35f);
             Gizmos.DrawRay(transform.position, rayDir * _lookAheadDistance);
+        }
+
+        // Show unstuck direction in blue
+        if (_unstuckTimer > 0f)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawRay(transform.position, _unstuckDir * 2f);
         }
     }
 }
