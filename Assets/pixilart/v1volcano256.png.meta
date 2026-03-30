@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0707bcf300de97442b6b3f82cacf1170
+guid: 1a693de061a0b934bb3a2b43ac8ce1e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1279475514997740682
-    second: v1corner256_0
+      213: 4843963982858749539
+    second: v1volcano256_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: v1corner256_0
+      name: v1volcano256_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 44
         width: 1280
-        height: 1280
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 542
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67befbd4cc36e3ee0800000000000000
-      internalID: -1279475514997740682
+      spriteID: 3660517f397393340800000000000000
+      internalID: 4843963982858749539
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8f3ba61d8085f1244940b98655844f12
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      v1corner256_0: -1279475514997740682
+      v1volcano256_0: 4843963982858749539
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

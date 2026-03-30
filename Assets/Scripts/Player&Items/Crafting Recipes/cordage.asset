@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a33e2fe92d39042b8c63a6fbe6dda4, type: 3}
   m_Name: cordage
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeData
-  ingredientA: {fileID: 0}
-  ingredientB: {fileID: 0}
-  result: {fileID: 0}
+  ingredientA: {fileID: 11400000, guid: 81d735dcd928bc546adf5c2619c781e2, type: 2}
+  ingredientB: {fileID: 11400000, guid: 81d735dcd928bc546adf5c2619c781e2, type: 2}
+  result: {fileID: 11400000, guid: 213e0f9a679947847ba06be1b0560581, type: 2}

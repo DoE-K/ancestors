@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class PlayerActionUI : MonoBehaviour
@@ -8,13 +7,13 @@ public class PlayerActionUI : MonoBehaviour
     [SerializeField] private PlayerInventory _inventory;
     [SerializeField] private PlayerCrafter   _crafter;
 
-    [Header("Pickup Button 1")]
-    [SerializeField] private GameObject  _pickupButton1;
-    [SerializeField] private TMP_Text    _pickupButton1Label;
+    [Header("Hand Button — Left (or first hand)")]
+    [SerializeField] private GameObject  _handButton1;
+    [SerializeField] private TMP_Text    _handButton1Label;
 
-    [Header("Pickup Button 2")]
-    [SerializeField] private GameObject  _pickupButton2;
-    [SerializeField] private TMP_Text    _pickupButton2Label;
+    [Header("Hand Button — Right (or second hand)")]
+    [SerializeField] private GameObject  _handButton2;
+    [SerializeField] private TMP_Text    _handButton2Label;
 
     [Header("Craft Button")]
     [SerializeField] private GameObject  _craftButton;
@@ -34,26 +33,41 @@ public class PlayerActionUI : MonoBehaviour
 
     private void Start()
     {
-        // Hide all buttons initially
-        SetPickupButton(_pickupButton1, _pickupButton1Label, null);
-        SetPickupButton(_pickupButton2, _pickupButton2Label, null);
+        _handButton1.SetActive(false);
+        _handButton2.SetActive(false);
         _craftButton.SetActive(false);
     }
 
-    // ── Called by UI Button OnClick events (assign in Inspector) ─────────────
+    // ── Button callbacks (assign in Inspector OnClick) ────────────────────────
 
-    public void OnPickupButton1Clicked()
+    public void OnHandButton1Clicked()
     {
-        var items = _inventory.NearbyItems;
-        if (items.Count >= 1)
-            _inventory.TryPickUp(items[0]);
+        // If right hand is occupied → drop it
+        if (!string.IsNullOrEmpty(_inventory.RightHandItemName))
+        {
+            _inventory.DropRight();
+            return;
+        }
+
+        // Otherwise pick up the first nearby item
+        if (_inventory.NearbyItems.Count >= 1)
+            _inventory.TryPickUp(_inventory.NearbyItems[0]);
     }
 
-    public void OnPickupButton2Clicked()
+    public void OnHandButton2Clicked()
     {
-        var items = _inventory.NearbyItems;
-        if (items.Count >= 2)
-            _inventory.TryPickUp(items[1]);
+        // If left hand is occupied → drop it
+        if (!string.IsNullOrEmpty(_inventory.LeftHandItemName))
+        {
+            _inventory.DropLeft();
+            return;
+        }
+
+        // Otherwise pick up the second nearby item
+        if (_inventory.NearbyItems.Count >= 2)
+            _inventory.TryPickUp(_inventory.NearbyItems[1]);
+        else if (_inventory.NearbyItems.Count >= 1)
+            _inventory.TryPickUp(_inventory.NearbyItems[0]);
     }
 
     public void OnCraftButtonClicked()
@@ -61,41 +75,59 @@ public class PlayerActionUI : MonoBehaviour
         _crafter.TryCraft();
     }
 
-    // ── Private ───────────────────────────────────────────────────────────────
+    // ── Refresh ───────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Called whenever inventory state changes — updates all button visibility.
-    /// </summary>
     private void Refresh()
     {
-        var items = _inventory.NearbyItems;
+        RefreshHandButton(
+            button:    _handButton1,
+            label:     _handButton1Label,
+            heldItem:  _inventory.RightHandItemName,
+            nearbyIndex: 0);
 
-        // Pickup button 1
-        SetPickupButton(
-            _pickupButton1,
-            _pickupButton1Label,
-            items.Count >= 1 ? items[0] : null);
+        RefreshHandButton(
+            button:    _handButton2,
+            label:     _handButton2Label,
+            heldItem:  _inventory.LeftHandItemName,
+            nearbyIndex: 1);
 
-        // Pickup button 2
-        SetPickupButton(
-            _pickupButton2,
-            _pickupButton2Label,
-            items.Count >= 2 ? items[1] : null);
-
-        // Craft button — only visible if current hand items form a valid recipe
         bool showCraft = _crafter.CanCraft();
         _craftButton.SetActive(showCraft);
-
         if (showCraft && _craftButtonLabel != null)
             _craftButtonLabel.text = "Craft";
     }
 
-    private void SetPickupButton(GameObject button, TMP_Text label, Item item)
+    /// <summary>
+    /// Updates a single hand button:
+    ///   - Hand occupied → "Drop [name]"
+    ///   - Hand empty + nearby item available → "Pickup [name]"
+    ///   - Neither → hide
+    /// </summary>
+    private void RefreshHandButton(
+        GameObject button,
+        TMP_Text   label,
+        string     heldItem,
+        int        nearbyIndex)
     {
-        bool show = item != null;
-        button.SetActive(show);
+        bool handOccupied = !string.IsNullOrEmpty(heldItem);
 
-        if (show && label != null)
-            label.text = item.ItemName;
+        if (handOccupied)
+        {
+            button.SetActive(true);
+            label.text = $"Drop {heldItem}";
+            return;
+        }
+
+        // Hand is empty — show pickup if a nearby item exists for this slot
+        var nearby = _inventory.NearbyItems;
+        if (nearby.Count > nearbyIndex)
+        {
+            button.SetActive(true);
+            label.text = $"Pickup {nearby[nearbyIndex].ItemName}";
+            return;
+        }
+
+        // Nothing to show
+        button.SetActive(false);
     }
 }

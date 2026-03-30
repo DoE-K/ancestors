@@ -11,4 +11,9 @@ public class CavePortal : ScriptableObject
 
     [Tooltip("Where the player lands when exiting this cave.")]
     public Vector2 exitDestination;
+
+    [Header("Required Item (optional)")]
+    [Tooltip("If set, the player must hold this item in either hand to enter. " +
+             "Leave empty for caves that are always accessible.")]
+    public ItemData requiredItem;
 }

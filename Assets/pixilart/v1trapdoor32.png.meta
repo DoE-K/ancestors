@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ab3738d60b3f91b4ea6ead5b678b5938
+guid: 812f51a68e7979c41afdeeb9e0b7988f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4542865096176035758
-    second: v1southafrica256_0
+      213: -5565994053469834094
+    second: v1trapdoor32_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: v1southafrica256_0
+      name: v1trapdoor32_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1280
-        height: 1280
+        x: 75
+        y: 189
+        width: 1066
+        height: 838
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ea7e7106cbf7b0f30800000000000000
-      internalID: 4542865096176035758
+      spriteID: 2947ef4f5ed91c2b0800000000000000
+      internalID: -5565994053469834094
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      v1southafrica256_0: 4542865096176035758
+      v1trapdoor32_0: -5565994053469834094
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
