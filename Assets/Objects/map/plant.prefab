@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 8487569566542090334}
   m_Layer: 0
   m_Name: plant
-  m_TagString: Tree
+  m_TagString: WorldObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
