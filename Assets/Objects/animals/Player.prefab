@@ -159,7 +159,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 443405554567500794}
   - component: {fileID: 8810234552640474026}
   - component: {fileID: 4512672639411183149}
+  - component: {fileID: 2277600399654370214}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Player
@@ -280,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8029510603902442761}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.827278, y: 0.73848724, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -436,7 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   _normalSpeed: 5
   _sneakSpeed: 1
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 389465895120735683}
 --- !u!114 &407519264131297509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,8 +464,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d401fec83c15f49ac14be5d1a001e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCrafter
-  _inventory: {fileID: 0}
-  _recipes: []
+  _inventory: {fileID: 407519264131297509}
+  _recipes:
+  - {fileID: 11400000, guid: c79ecfefaca23704c828fe9e16f947ad, type: 2}
+  - {fileID: 11400000, guid: 3f4ab00315ae3dd40ae90412b29bbf17, type: 2}
+  - {fileID: 11400000, guid: 7aa6614fb9d1ad645b841f5890c3675b, type: 2}
+  - {fileID: 11400000, guid: b8e7e14dcca1224489444b1a2ff1384a, type: 2}
+  - {fileID: 11400000, guid: e2bc481fdf627364796eab4f5c6b226e, type: 2}
+  - {fileID: 11400000, guid: a810a39c7f46b254eb6108b08838bccb, type: 2}
+  - {fileID: 11400000, guid: 66479bb61d6d89d49be9bdf5361ac4d0, type: 2}
+  - {fileID: 11400000, guid: b29071a62204bb640ae46f5f85cef9fa, type: 2}
+  - {fileID: 11400000, guid: ad62a23c2e1ba3e4f85c03c03ceddf04, type: 2}
+  - {fileID: 11400000, guid: 8757ff959386b4e4fbdc0bd29546c848, type: 2}
 --- !u!114 &2413384810591528928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,9 +504,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7041360f20fe3ea4ebcc2c6bb6349ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AchievementManager
-  _inventory: {fileID: 0}
-  _scorePopup: {fileID: 0}
-  _locationAchievements: []
+  _inventory: {fileID: 407519264131297509}
+  _scorePopup: {fileID: 2277600399654370214}
+  _locationAchievements:
+  - {fileID: 11400000, guid: 55b399f7a71aa684baf06b8ba584dc0b, type: 2}
+  - {fileID: 11400000, guid: b66f3811916e4bd4eb27a255a828e73d, type: 2}
+  - {fileID: 11400000, guid: 5f558359e9b93c043a7bbeb0aa36f824, type: 2}
 --- !u!114 &8810234552640474026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +522,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0256722486da0a439e54375fca31ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCave
-  _portals: []
+  _portals:
+  - {fileID: 11400000, guid: 75bc7e258a93f7949972e6049b62c493, type: 2}
+  - {fileID: 11400000, guid: 2d752fb127292774ca6097b660f9bae7, type: 2}
+  - {fileID: 11400000, guid: 9b1495d2ea5653e4fb40c46f57edb222, type: 2}
+  - {fileID: 11400000, guid: 595a56215a7b2ad469d21d1427c8c913, type: 2}
+  - {fileID: 11400000, guid: 5d932354a338c4649b6e64715e3b356a, type: 2}
+  _inventory: {fileID: 407519264131297509}
+  _lockedMessage: You need a key to enter.
 --- !u!114 &4512672639411183149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,11 +542,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1754b3336f6c249aaab83c2acf7379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionUI
-  _inventory: {fileID: 0}
-  _crafter: {fileID: 0}
-  _pickupButton1: {fileID: 0}
-  _pickupButton1Label: {fileID: 0}
-  _pickupButton2: {fileID: 0}
-  _pickupButton2Label: {fileID: 0}
+  _inventory: {fileID: 407519264131297509}
+  _crafter: {fileID: 2814357753001606226}
+  _handButton1: {fileID: 0}
+  _handButton1Label: {fileID: 0}
+  _handButton2: {fileID: 0}
+  _handButton2Label: {fileID: 0}
   _craftButton: {fileID: 0}
   _craftButtonLabel: {fileID: 0}
+--- !u!114 &2277600399654370214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8029510603902442761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56ba6a835db3684aa83600678ae2266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScorePopup
+  _moveSpeed: 40
+  _fadeTime: 0.8
+  _popupObject: {fileID: 0}
+  _popupText: {fileID: 0}
