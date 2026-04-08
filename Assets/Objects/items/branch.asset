@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: branch
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Branch
+  sprite: {fileID: -662440258426526401, guid: 6edde943ec6aa8044b66b3df854127d1, type: 3}
   prefab: {fileID: 3316177416189948162, guid: 316f395fabec098428d2b062efbafd19, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

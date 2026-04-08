@@ -1,23 +1,30 @@
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class PlayerActionUI : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private PlayerInventory _inventory;
     [SerializeField] private PlayerCrafter   _crafter;
+    [SerializeField] private ItemRegistry    _itemRegistry;
 
     [Header("Hand Button 1 (Right Hand)")]
     [SerializeField] private GameObject _handButton1;
-    [SerializeField] private TMP_Text   _handButton1Label;
+    [SerializeField] private Image      _handButton1Icon;
 
     [Header("Hand Button 2 (Left Hand)")]
     [SerializeField] private GameObject _handButton2;
-    [SerializeField] private TMP_Text   _handButton2Label;
+    [SerializeField] private Image      _handButton2Icon;
 
     [Header("Craft Button")]
     [SerializeField] private GameObject _craftButton;
-    [SerializeField] private TMP_Text   _craftButtonLabel;
+    [SerializeField] private Image      _craftButtonIcon;
+
+    [Header("Default Icons")]
+    [Tooltip("Icon shown when the hand is empty and an item is nearby (pickup action).")]
+    [SerializeField] private Sprite _pickupIcon;
+    [Tooltip("Icon shown on the craft button.")]
+    [SerializeField] private Sprite _craftIcon;
 
     // ── Unity lifecycle ───────────────────────────────────────────────────────
 
@@ -41,10 +48,8 @@ public class PlayerActionUI : MonoBehaviour
             return;
         }
 
-        var item = GetNearbyItemForSlot(rightHandOccupied: false, leftHandOccupied:
-            !string.IsNullOrEmpty(_inventory.LeftHandItemName), slotIndex: 0);
-
-        if (item != null) _inventory.TryPickUp(item);
+        if (_inventory.NearbyItems.Count >= 1)
+            _inventory.TryPickUp(_inventory.NearbyItems[0]);
     }
 
     public void OnHandButton2Clicked()
@@ -56,15 +61,13 @@ public class PlayerActionUI : MonoBehaviour
         }
 
         bool rightOccupied = !string.IsNullOrEmpty(_inventory.RightHandItemName);
+        int  nearbyIndex   = rightOccupied ? 0 : 1;
+        var  nearby        = _inventory.NearbyItems;
 
-        int slotIndex = rightOccupied ? 0 : 1;
-
-        var item = GetNearbyItemForSlot(
-            rightHandOccupied: rightOccupied,
-            leftHandOccupied: false,
-            slotIndex: slotIndex);
-
-        if (item != null) _inventory.TryPickUp(item);
+        if (nearby.Count > nearbyIndex)
+            _inventory.TryPickUp(nearby[nearbyIndex]);
+        else if (nearby.Count > 0)
+            _inventory.TryPickUp(nearby[0]);
     }
 
     public void OnCraftButtonClicked() => _crafter.TryCraft();
@@ -73,37 +76,38 @@ public class PlayerActionUI : MonoBehaviour
 
     private void Refresh()
     {
-        var nearby         = _inventory.NearbyItems;
+        var  nearby        = _inventory.NearbyItems;
         bool rightOccupied = !string.IsNullOrEmpty(_inventory.RightHandItemName);
         bool leftOccupied  = !string.IsNullOrEmpty(_inventory.LeftHandItemName);
 
+        // Button 1 — Right hand
         if (rightOccupied)
         {
-            Show(_handButton1, _handButton1Label, $"Drop {_inventory.RightHandItemName}");
+            // Show the held item's sprite
+            Show(_handButton1, _handButton1Icon,
+                GetItemSprite(_inventory.RightHandItemName));
         }
         else if (nearby.Count > 0)
         {
-            // nearby[0] is always claimed by button 1 when right hand is empty
-            Show(_handButton1, _handButton1Label, $"Pickup {nearby[0].ItemName}");
+            // Show pickup icon
+            Show(_handButton1, _handButton1Icon, _pickupIcon);
         }
         else
         {
             _handButton1.SetActive(false);
         }
 
+        // Button 2 — Left hand
         if (leftOccupied)
         {
-            Show(_handButton2, _handButton2Label, $"Drop {_inventory.LeftHandItemName}");
+            Show(_handButton2, _handButton2Icon,
+                GetItemSprite(_inventory.LeftHandItemName));
         }
         else
         {
-            // If right hand is empty it already claims nearby[0], so left gets nearby[1]
-            // If right hand is occupied it claims nothing, so left gets nearby[0]
             int nearbyIndexForLeft = rightOccupied ? 0 : 1;
-
             if (nearby.Count > nearbyIndexForLeft)
-                Show(_handButton2, _handButton2Label,
-                    $"Pickup {nearby[nearbyIndexForLeft].ItemName}");
+                Show(_handButton2, _handButton2Icon, _pickupIcon);
             else
                 _handButton2.SetActive(false);
         }
@@ -111,22 +115,28 @@ public class PlayerActionUI : MonoBehaviour
         // Craft button
         bool showCraft = _crafter.CanCraft();
         _craftButton.SetActive(showCraft);
-        if (showCraft && _craftButtonLabel != null)
-            _craftButtonLabel.text = "Craft";
+        if (showCraft)
+            _craftButtonIcon.sprite = _craftIcon;
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
-    private void Show(GameObject button, TMP_Text label, string text)
+    private void Show(GameObject button, Image icon, Sprite sprite)
     {
         button.SetActive(true);
-        label.text = text;
+        icon.sprite = sprite;
     }
 
-    private Item GetNearbyItemForSlot(bool rightHandOccupied, bool leftHandOccupied, int slotIndex)
+    /// <summary>
+    /// Looks up the sprite for a held item by name via ItemRegistry.
+    /// Falls back to the pickup icon if no sprite is set on the ItemData.
+    /// </summary>
+    private Sprite GetItemSprite(string itemName)
     {
-        var nearby = _inventory.NearbyItems;
-        if (nearby.Count > slotIndex) return nearby[slotIndex];
-        return null;
+        if (_itemRegistry != null && _itemRegistry.TryGet(itemName, out var data))
+            if (data.sprite != null)
+                return data.sprite;
+
+        return _pickupIcon; // fallback
     }
 }

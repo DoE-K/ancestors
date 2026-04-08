@@ -465,7 +465,6 @@ GameObject:
   - component: {fileID: 8810234552640474026}
   - component: {fileID: 4512672639411183149}
   - component: {fileID: 2277600399654370214}
-  - component: {fileID: 2342325310231024298}
   - component: {fileID: 1696939249127900108}
   m_Layer: 0
   m_Name: PLAYER
@@ -748,12 +747,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionUI
   _inventory: {fileID: 407519264131297509}
   _crafter: {fileID: 2814357753001606226}
+  _itemRegistry: {fileID: 0}
   _handButton1: {fileID: 0}
-  _handButton1Label: {fileID: 0}
+  _handButton1Icon: {fileID: 0}
   _handButton2: {fileID: 0}
-  _handButton2Label: {fileID: 0}
+  _handButton2Icon: {fileID: 0}
   _craftButton: {fileID: 0}
-  _craftButtonLabel: {fileID: 0}
+  _craftButtonIcon: {fileID: 0}
+  _pickupIcon: {fileID: -3867882278135314944, guid: 65a151171900f7342867062134ccb45b, type: 3}
+  _craftIcon: {fileID: 3998788154854368424, guid: dd2d0b39e57a6ab4e94fdc8ccbcb3fbe, type: 3}
 --- !u!114 &2277600399654370214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,24 +772,6 @@ MonoBehaviour:
   _fadeTime: 0.8
   _popupObject: {fileID: 0}
   _popupText: {fileID: 0}
---- !u!114 &2342325310231024298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8029510603902442761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ddcc866aafe7b04cbad160550c27dd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WorldChunkManager
-  _player: {fileID: 304994468469559772}
-  _chunkSize: 30
-  _activeRadius: 1
-  _checkInterval: 2
-  _autoRegister: 1
-  _worldObjectTag: WorldObject
 --- !u!114 &1696939249127900108
 MonoBehaviour:
   m_ObjectHideFlags: 0
