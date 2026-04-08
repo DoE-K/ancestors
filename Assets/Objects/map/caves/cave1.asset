@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: cave1
   m_EditorClassIdentifier: Assembly-CSharp::CavePortal
   caveName: cave1
-  entryDestination: {x: -90, y: -302}
+  entryDestination: {x: -360, y: -302}
   exitDestination: {x: 22.03125, y: 67.2}
   requiredItem: {fileID: 0}
