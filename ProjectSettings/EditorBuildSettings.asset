@@ -8,13 +8,14 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/photo.unity
     guid: a7a37361b10896b4498cfc5817d299c7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/menu.unity
     guid: 8df810dd20ab92b4c810c667c16ddac6
   - enabled: 1
-    path: Assets/Scenes/map.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/highscore.unity
     guid: 1360d40c22a7ea6428f69628e4006c84
+  - enabled: 1
+    path: Assets/Scenes/map.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

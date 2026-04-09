@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: stone
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Stone
+  sprite: {fileID: -5186742475603587790, guid: 32bf553524d25e74db6085901c51d2a3, type: 3}
   prefab: {fileID: 142798818121324930, guid: d66d23f175db2ef4d83683ffe19ef3eb, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

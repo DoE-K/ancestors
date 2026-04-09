@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ancientblueberry
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Ancient Blueberry
+  sprite: {fileID: -477393636168728087, guid: d5038d1398224e64db7ca203b70ad1d0, type: 3}
   prefab: {fileID: 6456227226306244904, guid: 9b35bbbd9bd617740a70ad6337d53e3f, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

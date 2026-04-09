@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: bone
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Bone
+  sprite: {fileID: 2093016386850641092, guid: 5f81e79c1e0bda3448da8e63e40048ca, type: 3}
   prefab: {fileID: 5587471492483112975, guid: 62ab0a307658e734899ea79decd99bf0, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

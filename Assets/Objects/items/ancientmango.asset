@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ancientmango
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Ancient Mango
+  sprite: {fileID: 5560349281169696546, guid: 201523bda8fdf7f43a5a5466c13ff51a, type: 3}
   prefab: {fileID: 4052771012337750849, guid: 0fa0679da75e41b40aca64f20e1d517a, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

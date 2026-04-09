@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: key
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Key
+  sprite: {fileID: 371456630847093401, guid: f86b66acce24f694f94947debb9e4b30, type: 3}
   prefab: {fileID: 1521213159715412387, guid: ccef23d744d497645a7e5694653d7770, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: obsidiansplinter
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Obsidiansplinter
+  sprite: {fileID: -9116466495401353735, guid: e917bded8337ea94d86da82b4e786edc, type: 3}
   prefab: {fileID: 5249744920534276058, guid: aff0ec647156185489051eac18edc501, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

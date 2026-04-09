@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: cordage
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Cordage
+  sprite: {fileID: -1597457335329576190, guid: 0ab9a0c473cf8d34789d9b243fd247cf, type: 3}
   prefab: {fileID: 7945597281177809020, guid: 258c182f758686041bb5ef26ebbcd23f, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

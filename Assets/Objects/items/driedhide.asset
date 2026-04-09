@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: driedhide
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Driedhide
+  sprite: {fileID: 8382106920148612234, guid: f9054a88f45cc8148b78e2e943b6d5e1, type: 3}
   prefab: {fileID: 5094125109154100482, guid: eb35e4befa276d94ea04b2c6de2934c2, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

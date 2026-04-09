@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: plantfiber
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Plantfiber
+  sprite: {fileID: 6666181931260744725, guid: 9342a4abffcfaae4ea8b2c4c062491a0, type: 3}
   prefab: {fileID: 7898789752996363308, guid: 840f5ec3cc6e9764f96ce86aab5ef905, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

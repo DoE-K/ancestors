@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: plank
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Plank
+  sprite: {fileID: -8368790874461587606, guid: ec22fc98f8c66554784ce56cc1e9b7c4, type: 3}
   prefab: {fileID: 7856189760675523022, guid: 5049a94b7b57c95499097261f75c494b, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

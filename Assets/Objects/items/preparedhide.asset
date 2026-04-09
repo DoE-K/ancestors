@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: preparedhide
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Preparedhide
+  sprite: {fileID: -4351055680804238363, guid: 9ae3a00a87bb2ce4a9ffe7d1e4027906, type: 3}
   prefab: {fileID: 468604924990255138, guid: a7aa700280dac3742ad62877b9fcb568, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

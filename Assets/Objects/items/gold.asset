@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: gold
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Gold
+  sprite: {fileID: 5631402905685112741, guid: 70ef36cb793b16f4f8619803b2ef14c0, type: 3}
   prefab: {fileID: 1540950305579844356, guid: 55ce31766c6806a4abed4fb412b24a09, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

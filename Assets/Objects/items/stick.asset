@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: stick
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Stick
+  sprite: {fileID: -3158834813432893645, guid: 5917d289aed8d3a48a905aacc9717143, type: 3}
   prefab: {fileID: 2759785883975582908, guid: 83c5a73956b75654e8d04243f2a1c9cf, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: salt
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Salt
+  sprite: {fileID: -1997761395136534669, guid: 6915e20f44780ab4d94e1b71c8e813e7, type: 3}
   prefab: {fileID: 5424077732812575264, guid: b95cdba9b18c382448c65fe65ddb0bc0, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

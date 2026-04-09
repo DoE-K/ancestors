@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ancientblackberry
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Ancient Blackberry
+  sprite: {fileID: 7499036046040674498, guid: b9712512b69c1d347869579e54e168e3, type: 3}
   prefab: {fileID: 6303558597769425169, guid: a2f262e8ccda72f4f812e18fe4fe7c1c, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

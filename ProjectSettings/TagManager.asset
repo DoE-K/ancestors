@@ -21,6 +21,7 @@ TagManager:
   - AnimalBody
   - Turtle
   - Fish
+  - WorldObject
   layers:
   - Default
   - TransparentFX
@@ -58,41 +59,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: background
-    uniqueID: 1967312239
+  - name: Background
+    uniqueID: 2200569803
     locked: 0
-  - name: floor
-    uniqueID: 4007154805
+  - name: Ground_Details
+    uniqueID: 1117672213
     locked: 0
-  - name: animal - floor
-    uniqueID: 868413587
+  - name: World_Static
+    uniqueID: 519854537
     locked: 0
-  - name: stone
-    uniqueID: 4235380691
+  - name: Entities
+    uniqueID: 3192411973
     locked: 0
-  - name: bush
-    uniqueID: 3235979179
+  - name: World_Foreground
+    uniqueID: 1941176227
     locked: 0
-  - name: plant/flower
-    uniqueID: 288991739
-    locked: 0
-  - name: player
-    uniqueID: 4217839453
-    locked: 0
-  - name: tree
-    uniqueID: 3858133743
-    locked: 0
-  - name: items
-    uniqueID: 3489534261
-    locked: 0
-  - name: forground
-    uniqueID: 1302962591
-    locked: 0
-  - name: animal - flying
-    uniqueID: 2849972763
-    locked: 0
-  - name: ui
-    uniqueID: 3031299685
+  - name: UI
+    uniqueID: 2734851053
     locked: 0
   m_RenderingLayers:
   - Default

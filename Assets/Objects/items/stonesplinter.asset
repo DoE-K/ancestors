@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: stonesplinter
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Stonesplinter
+  sprite: {fileID: 4714191163782290502, guid: 67dfa9c3ee31d45459020ca810b8646e, type: 3}
   prefab: {fileID: 111331859293995073, guid: ddd359e056abc7143b579a99dbb3e03f, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

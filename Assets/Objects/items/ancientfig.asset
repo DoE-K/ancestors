@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ancientfig
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Ancient Fig
+  sprite: {fileID: 7063526119358950232, guid: 10da454654cf1254b83af5783d3d9394, type: 3}
   prefab: {fileID: 4835013737776260894, guid: 3839454da655b3742a78d151649fc9e6, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

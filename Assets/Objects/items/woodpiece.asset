@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: woodpiece
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Woodpiece
+  sprite: {fileID: -6270571791731227150, guid: 2c09c1e7559af0c45ac4e603d8f358b8, type: 3}
   prefab: {fileID: 1263169382404128017, guid: 8ca08a3f2ccdf4c4cbeec3fb244c92e7, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

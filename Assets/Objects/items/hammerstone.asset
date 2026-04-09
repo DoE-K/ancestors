@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: hammerstone
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Hammerstone
+  sprite: {fileID: 7468088562337091484, guid: 757aa0c9db53f2144967688a9bc10ada, type: 3}
   prefab: {fileID: 962467318589217980, guid: 8ad5df3f69d7d654a86ca2ac102df405, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1

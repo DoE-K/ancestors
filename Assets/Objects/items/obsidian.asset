@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: obsidian
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Obsidian
+  sprite: {fileID: -2110887761290108682, guid: 3de45460dc35438459e03ee872e49ff1, type: 3}
   prefab: {fileID: 8739317501222724535, guid: c47f7b182cda9464292e91b9b9f3c23a, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1
