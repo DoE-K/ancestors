@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class AtmosphereManager : MonoBehaviour
 {
@@ -69,4 +69,4 @@ public class AtmosphereManager : MonoBehaviour
                 break;
         }
     }
-}
+}*/

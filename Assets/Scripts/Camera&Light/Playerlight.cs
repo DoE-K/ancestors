@@ -1,42 +1,48 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
+/// <summary>
+/// Controls a Point Light 2D on the player.
+/// </summary>
 public class PlayerLight : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private SpriteRenderer _lightSprite;
+    [SerializeField] private Light2D  _light;
+    [SerializeField] private DayNight _dayNight;
 
     [Header("Night Settings")]
-    [Tooltip("Scale of the light circle at full intensity.")]
-    [SerializeField] private float _targetScale     = 6f;
-    [Tooltip("Alpha of the sprite at full intensity (0–1).")]
-    [SerializeField] private float _targetAlpha     = 0.85f;
+    [SerializeField] private float _targetIntensity = 1.0f;
+    [SerializeField] private float _targetRadius    = 5f;
+    [SerializeField] private Color _lightColor      = new Color(1f, 0.85f, 0.6f);
+
+    [Header("Flicker (subtle)")]
+    [SerializeField] private float _flickerAmount = 0.05f;
+    [SerializeField] private float _flickerSpeed  = 2f;
 
     [Header("Transition")]
-    [SerializeField] private float _transitionSpeed = 2f;
+    [SerializeField] private float _fadeSpeed = 2f;
 
-    private bool  _active          = false;
-    private float _currentAlpha    = 0f;
-    private float _currentScale    = 0f;
+    private float _currentIntensity = 0f;
+    private float _seed;
+
+    private void Awake()
+    {
+        _seed = Random.Range(0f, 100f);
+        if (_light != null) _light.color = _lightColor;
+    }
 
     private void Update()
     {
-        float targetAlpha = _active ? _targetAlpha : 0f;
-        float targetScale = _active ? _targetScale : 0f;
+        if (_light == null || _dayNight == null) return;
 
-        _currentAlpha = Mathf.Lerp(_currentAlpha, targetAlpha, _transitionSpeed * Time.deltaTime);
-        _currentScale = Mathf.Lerp(_currentScale, targetScale, _transitionSpeed * Time.deltaTime);
+        float target = _dayNight.IsNight ? _targetIntensity : 0f;
 
-        if (_lightSprite == null) return;
+        _currentIntensity = Mathf.Lerp(
+            _currentIntensity, target, _fadeSpeed * Time.deltaTime);
 
-        var color = _lightSprite.color;
-        color.a = _currentAlpha;
-        _lightSprite.color = color;
+        float flicker = Mathf.PerlinNoise(Time.time * _flickerSpeed, _seed) - 0.5f;
 
-        _lightSprite.transform.localScale = Vector3.one * _currentScale;
-    }
-
-    public void SetActive(bool active)
-    {
-        _active = active;
+        _light.intensity             = _currentIntensity + flicker * _flickerAmount;
+        _light.pointLightOuterRadius = _targetRadius;
     }
 }
