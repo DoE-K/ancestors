@@ -3,6 +3,7 @@ using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Controls a Point Light 2D on the player.
+/// Fades in at night, subtle flicker, configurable falloff.
 /// </summary>
 public class PlayerLight : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class PlayerLight : MonoBehaviour
     [SerializeField] private float _targetIntensity = 1.0f;
     [SerializeField] private float _targetRadius    = 5f;
     [SerializeField] private Color _lightColor      = new Color(1f, 0.85f, 0.6f);
+
+    [Header("Falloff")]
+    [Tooltip("Light falloff strength (0 = no falloff, 1 = sharp edge). Default 0.8")]
+    [SerializeField][Range(0f, 1f)] private float _falloffStrength = 0.8f;
 
     [Header("Flicker (subtle)")]
     [SerializeField] private float _flickerAmount = 0.05f;
@@ -28,7 +33,9 @@ public class PlayerLight : MonoBehaviour
     private void Awake()
     {
         _seed = Random.Range(0f, 100f);
-        if (_light != null) _light.color = _lightColor;
+        if (_light == null) return;
+        _light.color        = _lightColor;
+        _light.falloffIntensity = _falloffStrength;
     }
 
     private void Update()
@@ -44,5 +51,6 @@ public class PlayerLight : MonoBehaviour
 
         _light.intensity             = _currentIntensity + flicker * _flickerAmount;
         _light.pointLightOuterRadius = _targetRadius;
+        _light.falloffIntensity      = _falloffStrength;
     }
 }

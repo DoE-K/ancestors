@@ -10,8 +10,6 @@ using UnityEngine.Rendering.Universal;
 ///   Day        → warm white,  intensity 1.0
 ///   Dusk       → orange-red,  intensity 0.5  (sunset transition)
 ///   Night      → dark blue again
-///
-/// Reads time from DayNight.cs — no duplicate time tracking.
 /// </summary>
 public class DayNightLighting : MonoBehaviour
 {
@@ -47,10 +45,7 @@ public class DayNightLighting : MonoBehaviour
 
     private float GetCurrentHour()
     {
-        // Access DayNight's internal time via the public Temperature property
-        // as a proxy — we replicate the hour calculation here simply
-        // TODO: expose CurrentHour as a public property on DayNight for cleanliness
-        return (Time.time % 1200f) / 1200f * 24f;
+        return _dayNight.CurrentHour;
     }
 
     private Color ComputeColor(float hour)
