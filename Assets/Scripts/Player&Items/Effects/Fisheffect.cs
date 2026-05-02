@@ -1,38 +1,43 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
-/// Tool effect for fishing rod / net near water.
-/// Player must be standing near a "Water" tagged object.
-/// After a short wait, spawns a fish item in the player's hand.
-///
-/// Create via: Right-click → Create → Survival/Effects/Fish
-/// Assign to: Angel_ItemData, Netz_ItemData
+/// Tool effect for fishing rod.
+/// Simple: player touches water trigger → Use button erscheint → Fisch in Hand.
+/// Each fish entry has a configurable weight for rarity.
 /// </summary>
 [CreateAssetMenu(fileName = "FishEffect", menuName = "Survival/Effects/Fish")]
 public class FishEffect : ItemEffect
 {
-    [Header("Fishing Settings")]
-    public float      waterCheckRadius = 2f;
-    public string     waterTag         = "Water";
-    public ItemData[] possibleFish;
-    [Range(0f, 1f)]
-    public float      catchChance      = 0.7f;
+    [System.Serializable]
+    public class FishEntry
+    {
+        public ItemData item;
+        [Tooltip("Relative weight. Higher = more common. e.g. Fisch=10, Seltener Fisch=2")]
+        [Min(0f)]
+        public float weight = 10f;
+    }
 
-    //public override string actionHint => "Angel auswerfen";
+    [Header("Fishing Settings")]
+    public List<FishEntry> possibleFish;
+
+    [Range(0f, 1f)]
+    [Tooltip("Chance that any fish is caught at all. Rest = nothing.")]
+    public float catchChance = 0.7f;
+
+    //public override string actionHint => "Angeln";
 
     public override void Use(PlayerContext ctx)
     {
-        // Check if near water
-        var cols = Physics2D.OverlapCircleAll(ctx.Position, waterCheckRadius);
-        bool nearWater = false;
-        foreach (var col in cols)
+        if (!ctx.IsNearWater)
         {
-            if (col.CompareTag(waterTag)) { nearWater = true; break; }
+            Debug.Log("[FishEffect] Kein Wasser in der Naehe.");
+            return;
         }
 
-        if (!nearWater)
+        if (possibleFish == null || possibleFish.Count == 0)
         {
-            Debug.Log("[FishEffect] Kein Wasser in der Nähe.");
+            Debug.LogWarning("[FishEffect] Keine Fische konfiguriert!");
             return;
         }
 
@@ -42,11 +47,31 @@ public class FishEffect : ItemEffect
             return;
         }
 
-        if (possibleFish == null || possibleFish.Length == 0) return;
+        var fish = GetWeightedRandom();
+        if (fish == null) return;
 
-        var fish = possibleFish[Random.Range(0, possibleFish.Length)];
         ctx.Inventory.TrySpawnIntoHand(fish);
-
         Debug.Log($"[FishEffect] Gefangen: {fish.itemName}");
+    }
+
+    private ItemData GetWeightedRandom()
+    {
+        float total = 0f;
+        foreach (var entry in possibleFish)
+            if (entry?.item != null) total += entry.weight;
+
+        if (total <= 0f) return null;
+
+        float roll = Random.Range(0f, total);
+        float cumulative = 0f;
+
+        foreach (var entry in possibleFish)
+        {
+            if (entry?.item == null) continue;
+            cumulative += entry.weight;
+            if (roll <= cumulative) return entry.item;
+        }
+
+        return possibleFish[possibleFish.Count - 1].item;
     }
 }

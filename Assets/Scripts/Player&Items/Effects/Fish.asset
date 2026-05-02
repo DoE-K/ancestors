@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: Assembly-CSharp::FishEffect
   actionHint: Use
-  waterCheckRadius: 2
-  waterTag: Water
-  possibleFish: []
+  possibleFish:
+  - item: {fileID: 11400000, guid: 683ed1951a51aa4458def77311f3cd9c, type: 2}
+    weight: 39
+  - item: {fileID: 11400000, guid: f4bb9ab84cade9944bf4a8fc35c1d5fa, type: 2}
+    weight: 10
+  - item: {fileID: 11400000, guid: 2a42550f72f3e8a41946a551435e0c76, type: 2}
+    weight: 50
+  - item: {fileID: 11400000, guid: 713b670973adf9d40acfaa62194c5b28, type: 2}
+    weight: 1
   catchChance: 0.7
