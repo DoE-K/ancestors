@@ -3,14 +3,19 @@ using TMPro;
 
 /// <summary>
 /// Detects when the player holds a tool and handles activation.
+/// Button visibility conditions:
+///   FishEffect → only show when near water
+///   MineEffect → only show when near cave wall
+///   Other tools → always show
 /// </summary>
 public class PlayerToolHandler : MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private PlayerInventory      _inventory;
-    [SerializeField] private CameraZoom           _cameraZoom;
-    [SerializeField] private DayNight             _dayNight;
-    [SerializeField] private PlayerWaterDetector  _waterDetector;
+    [SerializeField] private PlayerInventory     _inventory;
+    [SerializeField] private CameraZoom          _cameraZoom;
+    [SerializeField] private DayNight            _dayNight;
+    [SerializeField] private PlayerWaterDetector _waterDetector;
+    [SerializeField] private PlayerWallDetector  _wallDetector;
 
     [Header("Input")]
     [SerializeField] private KeyCode _useKey = KeyCode.F;
@@ -31,7 +36,8 @@ public class PlayerToolHandler : MonoBehaviour
             Inventory     = _inventory,
             Camera        = _cameraZoom,
             DayNight      = _dayNight,
-            WaterDetector = _waterDetector
+            WaterDetector = _waterDetector,
+            WallDetector  = _wallDetector
         };
     }
 
@@ -94,11 +100,14 @@ public class PlayerToolHandler : MonoBehaviour
     {
         if (_useToolButton == null) return;
 
-        // For FishEffect: only show button when touching water
-        bool requiresWater  = effect is FishEffect;
-        bool waterCondition = !requiresWater || _ctx.IsNearWater;
+        bool conditionMet = effect switch
+        {
+            FishEffect => _ctx.IsNearWater,
+            MineEffect => _ctx.IsNearWall,
+            _          => true
+        };
 
-        bool show = effect != null && waterCondition;
+        bool show = effect != null && conditionMet;
         _useToolButton.SetActive(show);
 
         if (show && _useToolHint != null)

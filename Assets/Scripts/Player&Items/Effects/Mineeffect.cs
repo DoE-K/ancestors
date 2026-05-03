@@ -1,62 +1,85 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
-/// Tool effect for pickaxe / hammerstone used on cave walls.
-/// Casts a short raycast in the player's facing direction.
-/// If it hits a tagged "CaveWall", spawns a random ore item nearby.
-///
-/// Create via: Right-click → Create → Survival/Effects/Mine
-/// Assign to: Schaufel_ItemData, Hammerstein_ItemData etc.
+/// Tool effect for pickaxe / hammerstone on cave walls.
 /// </summary>
 [CreateAssetMenu(fileName = "MineEffect", menuName = "Survival/Effects/Mine")]
 public class MineEffect : ItemEffect
 {
+    [System.Serializable]
+    public class OreEntry
+    {
+        public ItemData item;
+        [Tooltip("Relative weight. Higher = more common. e.g. Stein=10, Gold=3, Diamant=1")]
+        [Min(0f)]
+        public float weight = 10f;
+    }
+
     [Header("Mining Settings")]
-    [Tooltip("How far the player can reach to mine.")]
-    public float          mineRange   = 1.5f;
-    [Tooltip("Tag on cave wall objects.")]
-    public string         wallTag     = "CaveWall";
-    [Tooltip("Possible ore items to drop. One is picked randomly.")]
-    public ItemData[]     possibleOres;
-    [Tooltip("Chance (0–1) to get any ore per swing. Rest = nothing.")]
+    public List<OreEntry> possibleOres;
+
     [Range(0f, 1f)]
-    public float          dropChance  = 0.6f;
+    [Tooltip("Chance that any ore drops at all per swing.")]
+    public float dropChance = 0.6f;
+
+    [Header("Spawn Settings")]
+    [Tooltip("Ore spawns within this radius around the player.")]
+    public float spawnRadius = 1.2f;
+
+    //public override string actionHint => "Abbauen";
 
     public override void Use(PlayerContext ctx)
     {
-        // Raycast in all 4 directions — pick nearest hit
-        Vector2[] dirs = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-
-        RaycastHit2D bestHit = default;
-        float        bestDist = float.MaxValue;
-
-        foreach (var dir in dirs)
+        if (!ctx.IsNearWall)
         {
-            var hit = Physics2D.Raycast(ctx.Position, dir, mineRange);
-            if (!hit || !hit.collider.CompareTag(wallTag)) continue;
-            if (hit.distance < bestDist)
-            {
-                bestDist = hit.distance;
-                bestHit  = hit;
-            }
-        }
-
-        if (!bestHit) return;
-
-        if (Random.value > dropChance)
-        {
-            Debug.Log("[MineEffect] Swing — nothing dropped this time.");
+            Debug.Log("[MineEffect] Keine Hohlenwand in der Naehe.");
             return;
         }
 
-        if (possibleOres == null || possibleOres.Length == 0) return;
+        if (possibleOres == null || possibleOres.Count == 0)
+        {
+            Debug.LogWarning("[MineEffect] Keine Erze konfiguriert!");
+            return;
+        }
 
-        var ore     = possibleOres[Random.Range(0, possibleOres.Length)];
-        var spawnPos = bestHit.point + bestHit.normal * -0.5f;
+        if (Random.value > dropChance)
+        {
+            Debug.Log("[MineEffect] Swing — nichts gefunden.");
+            return;
+        }
 
-        if (ore.prefab != null)
-            Instantiate(ore.prefab, spawnPos, Quaternion.identity);
+        var oreData = GetWeightedRandom();
+        if (oreData?.prefab == null) return;
 
-        Debug.Log($"[MineEffect] Mined: {ore.itemName}");
+        // Spawn at random position around player
+        Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
+        Vector3 spawnPos     = ctx.Transform.position
+            + new Vector3(randomOffset.x, randomOffset.y, 0f);
+
+        Object.Instantiate(oreData.prefab, spawnPos, Quaternion.identity);
+
+        Debug.Log($"[MineEffect] Abgebaut: {oreData.itemName}");
+    }
+
+    private ItemData GetWeightedRandom()
+    {
+        float total = 0f;
+        foreach (var entry in possibleOres)
+            if (entry?.item != null) total += entry.weight;
+
+        if (total <= 0f) return null;
+
+        float roll       = Random.Range(0f, total);
+        float cumulative = 0f;
+
+        foreach (var entry in possibleOres)
+        {
+            if (entry?.item == null) continue;
+            cumulative += entry.weight;
+            if (roll <= cumulative) return entry.item;
+        }
+
+        return possibleOres[possibleOres.Count - 1].item;
     }
 }

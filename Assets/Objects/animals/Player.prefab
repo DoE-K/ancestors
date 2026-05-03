@@ -55,10 +55,10 @@ SpriteRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,13 +102,14 @@ GameObject:
   - component: {fileID: 2025492064887040319}
   - component: {fileID: 4142558919950677782}
   - component: {fileID: 8602823429928119958}
+  - component: {fileID: 6457055826122488405}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2025492064887040319
 Transform:
   m_ObjectHideFlags: 0
@@ -183,6 +184,50 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2216100465486682624}
   m_Enabled: 1
+--- !u!114 &6457055826122488405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2216100465486682624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &4427124703508606793
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &803975954610436853
 Transform:
   m_ObjectHideFlags: 0
@@ -272,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 7592380763574640504}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -293,9 +338,9 @@ MonoBehaviour:
   m_ComponentVersion: 2
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.8
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000cb072a8315539e42c959fc1e455748bea3ffb373ed8302a3
@@ -319,7 +364,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -344,9 +389,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLight
   _light: {fileID: 8875088669770116573}
   _dayNight: {fileID: 0}
-  _targetIntensity: 1
-  _targetRadius: 5
+  _targetIntensity: 0.5
+  _targetRadius: 10
   _lightColor: {r: 1, g: 0.85, b: 0.6, a: 1}
+  _falloffStrength: 0.8
   _flickerAmount: 0.05
   _flickerSpeed: 2
   _fadeSpeed: 2
@@ -372,6 +418,10 @@ GameObject:
   - component: {fileID: 4512672639411183149}
   - component: {fileID: 2277600399654370214}
   - component: {fileID: 1696939249127900108}
+  - component: {fileID: 4299881016972692731}
+  - component: {fileID: 6546198439737522414}
+  - component: {fileID: 8019527106142003695}
+  - component: {fileID: 8131150179472225021}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Player
@@ -651,7 +701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionUI
   _inventory: {fileID: 407519264131297509}
   _crafter: {fileID: 2814357753001606226}
-  _itemRegistry: {fileID: 0}
+  _itemRegistry: {fileID: 11400000, guid: 655c68cdbf4709248be2dedbdbaf0558, type: 2}
   _handButton1: {fileID: 0}
   _handButton1Icon: {fileID: 0}
   _handButton2: {fileID: 0}
@@ -689,3 +739,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalSensor
   _scanInterval: 0.5
+--- !u!114 &4299881016972692731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8029510603902442761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfa7cd2c8cbee74f951e7b678cc5f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShipSpawner
+  _shipObject: {fileID: 0}
+  _scoreThreshold: 20
+--- !u!114 &6546198439737522414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8029510603902442761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fece29e021a712842b5699cd88266b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerToolHandler
+  _inventory: {fileID: 407519264131297509}
+  _cameraZoom: {fileID: 0}
+  _dayNight: {fileID: 0}
+  _waterDetector: {fileID: 8019527106142003695}
+  _wallDetector: {fileID: 8131150179472225021}
+  _useKey: 102
+  _useToolButton: {fileID: 0}
+  _useToolHint: {fileID: 0}
+--- !u!114 &8019527106142003695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8029510603902442761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2323a1a12cc49794ab9d567ead0098a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWaterDetector
+--- !u!114 &8131150179472225021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8029510603902442761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ad5b7be4f29f24b8bce2de56520100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWallDetector
