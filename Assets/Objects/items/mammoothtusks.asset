@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0371087896fdd42982aeaf6cda60cb, type: 3}
+  m_Name: mammoothtusks
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: Mammoothtusks
+  sprite: {fileID: -808883410326209640, guid: f1f8b601abea6d34bb01d465c13db953, type: 3}
+  prefab: {fileID: 4072633990303690807, guid: e59e50c908fcd7f489ccbb35ea0740ec, type: 3}
+  destroyOnPickup: 1
+  ableToPickup: 1
+  discoveryScore: 10
+  effect: {fileID: 11400000, guid: 76cd7510446c5ad4ea2f1f4f6e70cfec, type: 2}

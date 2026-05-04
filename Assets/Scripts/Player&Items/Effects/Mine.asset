@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Mine
   m_EditorClassIdentifier: Assembly-CSharp::MineEffect
   actionHint: Use
-  mineRange: 1.5
-  wallTag: CaveWall
-  possibleOres: []
+  possibleOres:
+  - item: {fileID: 11400000, guid: dbb8f65bb6e20464a8f75c6bc50c08b3, type: 2}
+    weight: 90
+  - item: {fileID: 11400000, guid: cb99acb25e3569e44a1b28ec043e2cd3, type: 2}
+    weight: 9
+  - item: {fileID: 11400000, guid: 713b670973adf9d40acfaa62194c5b28, type: 2}
+    weight: 1
   dropChance: 0.6
+  spawnRadius: 1.2

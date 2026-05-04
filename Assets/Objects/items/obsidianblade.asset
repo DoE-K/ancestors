@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: obsidianblade
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Obsidianblade
-  sprite: {fileID: 2105011564643998330, guid: 1868d5922b628f745b4fd42334645db7, type: 3}
+  sprite: {fileID: 2116439302009987574, guid: 5fad4f7166d860e469c435a3f982f200, type: 3}
   prefab: {fileID: 5075815934961665517, guid: 0eddd94421d41e3458b527e0a894c867, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1
   discoveryScore: 10
+  effect: {fileID: 0}

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: stoneblade
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Stoneblade
-  sprite: {fileID: 2203273953244901896, guid: 60aba7c236133c74bbaa62125b35467d, type: 3}
+  sprite: {fileID: 3624593103000315508, guid: 707bea57aa415f74ea0f63bd3d1ecd01, type: 3}
   prefab: {fileID: 4041901648752856890, guid: 499eff811f218bb459c6116197810b74, type: 3}
   destroyOnPickup: 1
   ableToPickup: 1
   discoveryScore: 10
+  effect: {fileID: 0}
